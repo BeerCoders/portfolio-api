@@ -1,0 +1,9 @@
+#FILTERS
+services:
+  form.type.user_filter:
+      class: AppBundle\Form\Type\Filter\UserFilterType
+      tags:
+          - { name: form.type, alias: user_filter }
+  provider.users_filter:
+      class: AppBundle\Filter\UserFilterProvider
+      parent: vardius_list.filter.provider

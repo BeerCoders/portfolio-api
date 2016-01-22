@@ -1,0 +1,81 @@
+FOS\UserBundle\Model\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+             fields: email
+             errorPath: email
+             message: fos_user.email.already_used
+             groups: [ "TacticRegistration", "TacticProfile" ]
+
+    properties:
+        email:
+            - NotBlank:
+                message: fos_user.email.blank
+                groups: [ "TacticRegistration", "TacticProfile" ]
+            - Length:
+                min: 2
+                minMessage: fos_user.email.short
+                max: 255
+                maxMessage: fos_user.email.long
+                groups: [ "TacticRegistration", "ResetPassword" ]
+            - Email:
+                message: fos_user.email.invalid
+                groups: [ "TacticRegistration", "TacticProfile" ]
+        plainPassword:
+            - NotBlank:
+                message: fos_user.password.blank
+                groups: [ "TacticRegistration", "ResetPassword", "ChangePassword" ]
+            - Length:
+                min: 2
+                minMessage: fos_user.password.blank
+                groups: [ "TacticRegistration", "TacticProfile", "ResetPassword", "ChangePassword"]
+
+FOS\UserBundle\Model\Group:
+    properties:
+        name:
+            - NotBlank:
+                message: fos_user.group.blank
+                groups: [ "TacticRegistration" ]
+            - Length:
+                min: 2
+                minMessage: fos_user.group.short
+                max: 255
+                maxMessage: fos_user.group.long
+                groups: [ "TacticRegistration" ]
+
+FOS\UserBundle\Propel\User:
+    properties:
+        email:
+            - NotBlank:
+                message: fos_user.email.blank
+                groups: [ "TacticRegistration", "TacticProfile" ]
+            - Length:
+                min: 2
+                minMessage: fos_user.email.short
+                max: 255
+                maxMessage: fos_user.email.long
+                groups: [ "TacticRegistration", "ResetPassword" ]
+            - Email:
+                message: fos_user.email.invalid
+                groups: [ "TacticRegistration", "TacticProfile" ]
+
+        plainPassword:
+            - NotBlank:
+                message: fos_user.password.blank
+                groups: [ "TacticRegistration", "ResetPassword", "ChangePassword" ]
+            - Length:
+                min: 2
+                minMessage: fos_user.password.blank
+                groups: [ "TacticRegistration", "TacticProfile", "ResetPassword", "ChangePassword"]
+
+FOS\UserBundle\Propel\Group:
+    properties:
+        name:
+            - NotBlank:
+                message: fos_user.group.blank
+                groups: [ "TacticRegistration" ]
+            - Length:
+                min: 2
+                minMessage: fos_user.group.short
+                max: 255
+                maxMessage: fos_user.group.long
+                groups: [ "TacticRegistration" ]

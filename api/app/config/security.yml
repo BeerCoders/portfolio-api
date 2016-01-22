@@ -1,0 +1,45 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_USER:       ROLE_API
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        anonymous:
+            pattern: ^/(doc|$)
+            security: false
+
+        oauth_token:
+            pattern:    ^/oauth/v2/token
+            security:   false
+
+#        For Implicit Grant or to get Authorization Code no need in our case (password flow)
+#        For more info follow this: http://blog.tankist.de/blog/2013/07/18/oauth2-explained-part-3-using-oauth2-with-your-bare-hands/
+#        oauth_authorize:
+#            pattern:    ^/oauth/v2/auth
+#            form_login:
+#                provider: fos_userbundle
+#                check_path: fos_user_security_check
+#                login_path: fos_user_security_login
+#            anonymous: true
+
+        api:
+            pattern: ^/
+            fos_oauth:  true
+            stateless:  true
+
+    access_control:
+        - { path: ^/, roles: [ IS_AUTHENTICATED_FULLY ] }

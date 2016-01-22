@@ -1,0 +1,5 @@
+#LIST VIEWS
+services:
+  user.actions_provider:
+    class: AppBundle\Action\UserActionProvider
+    parent: vardius_crud.action.provider

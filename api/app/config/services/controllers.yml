@@ -1,0 +1,8 @@
+#CONTROLLER
+services:
+  crud_controller.user:
+    class: "%vardius_crud.controller.class%"
+    factory: ["@vardius_crud.controller.factory", get]
+    arguments: ['AppBundle:User', /users, '@users.list_view', '@form.type.users', null, null, '@user.actions_provider']
+    tags:
+        - { name: vardius_crud.controller }

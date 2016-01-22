@@ -1,0 +1,5 @@
+#LIST VIEWS
+services:
+  users.list_view:
+    class: AppBundle\ListView\UserListViewProvider
+    parent: vardius_list.list_view.provider

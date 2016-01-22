@@ -1,0 +1,6 @@
+#FORMS
+services:
+  form.type.users:
+      class: AppBundle\Form\Type\Filter\UserFilterType
+      tags:
+          - { name: form.type, alias: user_filter }

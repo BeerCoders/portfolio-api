@@ -4,3 +4,18 @@ services:
       class: AppBundle\Form\Type\Filter\UserFilterType
       tags:
           - { name: form.type, alias: user_filter }
+
+  form.type.article:
+      class: AppBundle\Form\Type\Filter\ArticleFilterType
+      tags:
+          - { name: form.type, alias: article_filter }
+
+  form.type.category:
+      class: AppBundle\Form\Type\Filter\CategoryFilterType
+      tags:
+          - { name: form.type, alias: category_filter }
+
+  form.type.tag:
+      class: AppBundle\Form\Type\Filter\TagFilterType
+      tags:
+          - { name: form.type, alias: tag_filter }

@@ -7,3 +7,27 @@ services:
   provider.users_filter:
       class: AppBundle\Filter\UserFilterProvider
       parent: vardius_list.filter.provider
+
+  form.type.article_filter:
+      class: AppBundle\Form\Type\Filter\ArticleFilterType
+      tags:
+          - { name: form.type, alias: article_filter }
+  provider.article_filter:
+      class: AppBundle\Filter\ArticleFilterProvider
+      parent: vardius_list.filter.provider
+
+  form.type.category_filter:
+      class: AppBundle\Form\Type\Filter\CategoryFilterType
+      tags:
+          - { name: form.type, alias: category_filter }
+  provider.category_filter:
+      class: AppBundle\Filter\CategoryFilterProvider
+      parent: vardius_list.filter.provider
+
+  form.type.tag_filter:
+      class: AppBundle\Form\Type\Filter\TagFilterType
+      tags:
+          - { name: form.type, alias: tag_filter }
+  provider.tag_filter:
+      class: AppBundle\Filter\TagFilterProvider
+      parent: vardius_list.filter.provider

@@ -6,3 +6,24 @@ services:
     arguments: ['AppBundle:User', /users, '@users.list_view', '@form.type.users', null, null, '@user.actions_provider']
     tags:
         - { name: vardius_crud.controller }
+
+  crud_controller.article:
+    class: "%vardius_crud.controller.class%"
+    factory: ["@vardius_crud.controller.factory", get]
+    arguments: ['AppBundle:Article', /articles, '@articles.list_view', '@form.type.articles', null, null, '@article.actions_provider']
+    tags:
+        - { name: vardius_crud.controller }
+
+  crud_controller.category:
+    class: "%vardius_crud.controller.class%"
+    factory: ["@vardius_crud.controller.factory", get]
+    arguments: ['AppBundle:Category', /categories, '@categories.list_view', '@form.type.categories', null, null, '@category.actions_provider']
+    tags:
+        - { name: vardius_crud.controller }
+
+  crud_controller.tag:
+    class: "%vardius_crud.controller.class%"
+    factory: ["@vardius_crud.controller.factory", get]
+    arguments: ['AppBundle:Tag', /tags, '@tags.list_view', '@form.type.tags', null, null, '@tag.actions_provider']
+    tags:
+        - { name: vardius_crud.controller }

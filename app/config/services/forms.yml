@@ -1,21 +1,17 @@
 #FORMS
 services:
   form.type.users:
-      class: AppBundle\Form\Type\Filter\UserFilterType
+      class: AppBundle\Form\Type\UserType
       tags:
-          - { name: form.type, alias: user_filter }
+          - { name: form.type, alias: user }
 
-  form.type.article:
-      class: AppBundle\Form\Type\Filter\ArticleFilterType
+  form.type.files:
+      class: AppBundle\Form\Type\FileType
       tags:
-          - { name: form.type, alias: article_filter }
+          - { name: form.type, alias: file }
 
-  form.type.category:
-      class: AppBundle\Form\Type\Filter\CategoryFilterType
+  form.type.tags:
+      class: AppBundle\Form\Type\TagType
       tags:
-          - { name: form.type, alias: category_filter }
+          - { name: form.type, alias: tag }
 
-  form.type.tag:
-      class: AppBundle\Form\Type\Filter\TagFilterType
-      tags:
-          - { name: form.type, alias: tag_filter }

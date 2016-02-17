@@ -28,7 +28,25 @@ class UserFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('email', 'email')
+            ->add('email', 'email', [
+                'required' => false
+            ])
+            ->add('username', 'text', [
+                'required' => false
+            ])
+            ->add('name', 'text', [
+                'required' => false
+            ])
+            ->add('surname', 'text', [
+                'required' => false
+            ])
+            ->add('roles', 'text', [
+                'required' => false,
+                'mapped' => false
+            ])
+            ->add('enabled', 'checkbox', [
+                'required' => false
+            ])
             ->setMethod('GET');
     }
 
@@ -39,6 +57,7 @@ class UserFilterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\User',
+            'validation_group' => ['filter'],
         ]);
     }
 

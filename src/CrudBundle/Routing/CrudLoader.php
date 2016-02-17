@@ -57,7 +57,7 @@ class CrudLoader extends \Vardius\Bundle\CrudBundle\Routing\CrudLoader implement
                 /** @var ActionInterface $action */
                 $options = $action->getOptions();
 
-                $pattern = $controller->getRoutePrefix() . $options['pattern'];
+                $pattern = rtrim($controller->getRoutePrefix() . $options['pattern'], '/');
 
                 $defaults = $options['defaults'];
                 $defaults['_controller'] = $controllerKey . ':' . 'callAction';
@@ -145,11 +145,11 @@ class CrudLoader extends \Vardius\Bundle\CrudBundle\Routing\CrudLoader implement
         $docFilters = [];
         /**
          * @var string $key
-         * @var Filter $filter
+         * @var Filter|callable $filter
          */
         foreach ($filters as $key => $filter) {
             $name = 'callable';
-            if ($filter->getType() instanceof FilterType) {
+            if (!is_callable($filter) && $filter->getType() instanceof FilterType) {
                 $name = $filter->getType()->getName();
             }
             $docFilters[] = ['name' => $form->getName() . '[' . $key . ']', 'type' => $name];

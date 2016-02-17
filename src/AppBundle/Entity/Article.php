@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the rest-api package.
+ * This file is part of the portfolio-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
  *
@@ -9,7 +9,6 @@
  */
 
 namespace AppBundle\Entity;
-
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +19,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class Article
  * @package AppBundle\Entity
+ *
+ * @author Rafał Lorenz <vardius@gmail.com>
  * @author Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * @ORM\Entity
@@ -35,35 +36,12 @@ class Article
     protected $id;
 
     /**
-     * @var User
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="articles")
-     * @Serializer\MaxDepth(1)
-     */
-    protected $author;
-
-    /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles", cascade={"all"})
-     * @ORM\JoinTable(name="article_tag")
-     *
-     * @Serializer\MaxDepth(2)
-     */
-    protected $tags;
-
-    /**
-     * @var Category
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
-     * @Serializer\MaxDepth(1)
-     */
-    protected $category;
-
-    /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank)
      * @Assert\Url()
      */
-    protected $coverImage;
+    protected $cover;
 
     /**
      * @var string
@@ -79,21 +57,32 @@ class Article
 
     /**
      * @var string
-     * @ORM\Column(type="string")
-     * @Assert\Length(
-     *      min = 180,
-     *      max = 255,
-     *      minMessage = "Your introduction must be at least {{ limit }} characters long",
-     *      maxMessage = "Your introduction cannot be longer than {{ limit }} characters"
-     * )
-     */
-    protected $introduction;
-
-    /**
-     * @var string
      * @ORM\Column(type="text")
      */
     protected $body;
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="articles")
+     * @Serializer\MaxDepth(1)
+     */
+    protected $author;
+
+    /**
+     * @var Category
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="articles")
+     * @Serializer\MaxDepth(1)
+     */
+    protected $category;
+
+    /**
+     * @var ArrayCollection|Tag[]
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles", cascade={"all"})
+     * @ORM\JoinTable(name="article_tag")
+     *
+     * @Serializer\MaxDepth(2)
+     */
+    protected $tags;
 
     /**
      * @var \DateTime $created
@@ -117,7 +106,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -125,84 +114,20 @@ class Article
     }
 
     /**
-     * @param mixed $id
-     * @return Article
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
-     * @return User
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * @param User $author
-     * @return Article
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-        return $this;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getTags()
-    {
-        return $this->tags;
-    }
-
-    /**
-     * @param ArrayCollection $tags
-     * @return Article
-     */
-    public function setTags($tags)
-    {
-        $this->tags = $tags;
-        return $this;
-    }
-
-    /**
-     * @return Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param Category $category
-     * @return Article
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-        return $this;
-    }
-
-    /**
      * @return string
      */
-    public function getCoverImage()
+    public function getCover()
     {
-        return $this->coverImage;
+        return $this->cover;
     }
 
     /**
-     * @param string $coverImage
+     * @param string $cover
      * @return Article
      */
-    public function setCoverImage($coverImage)
+    public function setCover($cover)
     {
-        $this->coverImage = $coverImage;
+        $this->cover = $cover;
         return $this;
     }
 
@@ -227,24 +152,6 @@ class Article
     /**
      * @return string
      */
-    public function getIntroduction()
-    {
-        return $this->introduction;
-    }
-
-    /**
-     * @param string $introduction
-     * @return Article
-     */
-    public function setIntroduction($introduction)
-    {
-        $this->introduction = $introduction;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
     public function getBody()
     {
         return $this->body;
@@ -257,6 +164,73 @@ class Article
     public function setBody($body)
     {
         $this->body = $body;
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * @param User $author
+     * @return Article
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+        return $this;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     * @return Article
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|Tag[]
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param Tag $tag
+     * @return Article
+     */
+    public function addArticle(Tag $tag)
+    {
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Tag $tag
+     * @return Article
+     */
+    public function removeArticle(Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+
         return $this;
     }
 
@@ -295,7 +269,4 @@ class Article
         $this->updated = $updated;
         return $this;
     }
-
-
-
 }

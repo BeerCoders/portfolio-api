@@ -1,0 +1,210 @@
+<?php
+/**
+ * This file is part of the tactic-api package.
+ *
+ * (c) Rafał Lorenz <vardius@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class User
+ * @package AppBundle\Entity
+ * @author Rafał Lorenz <vardius@gmail.com>
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="fos_user")
+ */
+class User extends BaseUser
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Team", mappedBy="users")
+     */
+    protected $teams;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Organization", mappedBy="users")
+     */
+    protected $organizations;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="followers")
+     */
+    protected $follows;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Video", mappedBy="user")
+     */
+    protected $videos;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="follows")
+     */
+    protected $followers;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->organizations = new ArrayCollection();
+        $this->teams = new ArrayCollection();
+        $this->followers = new ArrayCollection();
+        $this->follows = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+    }
+
+    /**
+     * Add team
+     *
+     * @param \AppBundle\Entity\Team $team
+     *
+     * @return User
+     */
+    public function addTeam(\AppBundle\Entity\Team $team)
+    {
+        $this->teams[] = $team;
+
+        return $this;
+    }
+
+    /**
+     * Remove team
+     *
+     * @param \AppBundle\Entity\Team $team
+     */
+    public function removeTeam(\AppBundle\Entity\Team $team)
+    {
+        $this->teams->removeElement($team);
+    }
+
+    /**
+     * Get teams
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTeams()
+    {
+        return $this->teams;
+    }
+
+    /**
+     * Add organization
+     *
+     * @param \AppBundle\Entity\Organization $organization
+     *
+     * @return User
+     */
+    public function addOrganization(\AppBundle\Entity\Organization $organization)
+    {
+        $this->organizations[] = $organization;
+
+        return $this;
+    }
+
+    /**
+     * Remove organization
+     *
+     * @param \AppBundle\Entity\Organization $organization
+     */
+    public function removeOrganization(\AppBundle\Entity\Organization $organization)
+    {
+        $this->organizations->removeElement($organization);
+    }
+
+    /**
+     * Get organizations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOrganizations()
+    {
+        return $this->organizations;
+    }
+
+    /**
+     * Add follow
+     *
+     * @param \AppBundle\Entity\User $follow
+     *
+     * @return User
+     */
+    public function addFollow(\AppBundle\Entity\User $follow)
+    {
+        $this->follows[] = $follow;
+
+        return $this;
+    }
+
+    /**
+     * Remove follow
+     *
+     * @param \AppBundle\Entity\User $follow
+     */
+    public function removeFollow(\AppBundle\Entity\User $follow)
+    {
+        $this->follows->removeElement($follow);
+    }
+
+    /**
+     * Get follows
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFollows()
+    {
+        return $this->follows;
+    }
+
+    /**
+     * Add follower
+     *
+     * @param \AppBundle\Entity\User $follower
+     *
+     * @return User
+     */
+    public function addFollower(\AppBundle\Entity\User $follower)
+    {
+        $this->followers[] = $follower;
+
+        return $this;
+    }
+
+    /**
+     * Remove follower
+     *
+     * @param \AppBundle\Entity\User $follower
+     */
+    public function removeFollower(\AppBundle\Entity\User $follower)
+    {
+        $this->followers->removeElement($follower);
+    }
+
+    /**
+     * Get followers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFollowers()
+    {
+        return $this->followers;
+    }
+}

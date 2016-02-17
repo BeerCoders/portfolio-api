@@ -25,7 +25,13 @@ class UserFilterProvider extends FilterProvider
     public function build()
     {
         $this
-            ->addFilter('email', 'text');
+            ->addFilter('email', 'text')
+            ->addFilter('username', 'text')
+            ->addFilter('name', 'text')
+            ->addFilter('surname', 'text')
+            ->addFilter('roles', 'text')
+            ->addFilter('enable', 'text')
+        ;
     }
 
 }

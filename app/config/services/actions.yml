@@ -1,17 +1,5 @@
 #LIST VIEWS
 services:
-  user.actions_provider:
-    class: AppBundle\Action\UserActionProvider
+  base.actions_provider:
+    class: AppBundle\Action\BaseActionProvider
     parent: vardius_crud.action.provider
-
-  article.actions_provider:
-    class: AppBundle\Action\ArticleActionProvider
-    parent: vardius_crud.action.provider
-
-  category.actions_provider:
-      class: AppBundle\Action\CategoryActionProvider
-      parent: vardius_crud.action.provider
-
-  tag.actions_provider:
-      class: AppBundle\Action\TagActionProvider
-      parent: vardius_crud.action.provider

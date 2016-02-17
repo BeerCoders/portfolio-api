@@ -17,5 +17,4 @@ imports:
     - { resource: dependencies/fos_user.yml }
     - { resource: dependencies/fos_rest.yml }
     - { resource: dependencies/fos_oauth_server.yml }
-    - { resource: dependencies/jms_serializer.yml }
-    # - { resource: snappy.yml }
+    - { resource: dependencies/nelmio_cors.yml }

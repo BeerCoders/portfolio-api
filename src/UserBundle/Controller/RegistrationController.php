@@ -2,6 +2,7 @@
 
 namespace UserBundle\Controller;
 
+use FOS\UserBundle\Entity\User;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\Event\GetResponseUserEvent;
@@ -36,6 +37,7 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
         /** @var $dispatcher \Symfony\Component\EventDispatcher\EventDispatcherInterface */
         $dispatcher = $this->get('event_dispatcher');
 
+        /** @var User $user */
         $user = $userManager->createUser();
         $user->setEnabled(true);
 
@@ -58,8 +60,10 @@ class RegistrationController extends \FOS\UserBundle\Controller\RegistrationCont
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_registration_confirmed');
-                $response = new RedirectResponse($url);
+                return new JsonResponse([
+                    'message' => 'Check your Email to confirm registration',
+                    'user' => $user->getId()
+                ]);
             }
 
             $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));

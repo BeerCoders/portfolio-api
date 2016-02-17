@@ -3,7 +3,6 @@
  * This file is part of the rest-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
- * (c) Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,14 +10,15 @@
 
 namespace AppBundle\ListView;
 
-use Vardius\Bundle\ListBundle\ListView\ListView;
+use AppBundle\Entity\Tag;
+use JMS\Serializer\Serializer;
+use Vardius\Bundle\ListBundle\ListView\Factory\ListViewFactory;
 use Vardius\Bundle\ListBundle\ListView\Provider\ListViewProvider;
 
-
 /**
- * Class CategoryListViewProvider
+ * Class TagListViewProvider
  * @package AppBundle\ListView
- * @author Szymon Kunowski <szymon.kunowski@gmail.com>
+ * @author Rafał Lorenz <vardius@gmail.com>
  */
 class TagListViewProvider extends ListViewProvider
 {
@@ -30,22 +30,9 @@ class TagListViewProvider extends ListViewProvider
         $listView = $this->listViewFactory->get();
 
         $listView
-            ->addColumn('id', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('name', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('articles', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('created', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('updated', 'property', [
-                'sort' => true,
-            ])
-            ->addFilter('tag_filter', 'provider.tag_filter');
+            ->addColumn('id', 'property')
+            ->addColumn('name', 'property')
+            ->addFilter('tag_filter', 'provider.tags_filter');
 
         return $listView;
     }

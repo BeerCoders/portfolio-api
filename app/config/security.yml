@@ -5,9 +5,13 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_USER:       ROLE_API
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_USER:          ROLE_API
+        ROLE_SPECTATOR:     ROLE_USER
+        ROLE_PLAYER:        ROLE_SPECTATOR
+        ROLE_COACH:         ROLE_PLAYER
+        ROLE_ORGANIZATION:  ROLE_COACH
+        ROLE_ADMIN:         ROLE_ORGANIZATION
+        ROLE_SUPER_ADMIN:   ROLE_ADMIN
 
     providers:
         fos_userbundle:
@@ -19,7 +23,7 @@ security:
             security: false
 
         anonymous:
-            pattern: ^/(doc|$)
+            pattern: ^/(doc|register/confirm|resetting/send-email|$)
             security: false
 
         oauth_token:

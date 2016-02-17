@@ -1,9 +1,8 @@
 <?php
 /**
- * This file is part of the rest-api package.
+ * This file is part of the portfolio-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
- * (c) Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,15 +10,10 @@
 
 namespace AppBundle\Form\Type;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
-
 /**
  * Class ArticleType
  * @package AppBundle\Form\Type
- * @author Szymon Kunowski <szymon.kunowski@gmail.com>
+ * @author Rafał Lorenz <vardius@gmail.com>
  */
 class ArticleType extends AbstractType
 {
@@ -29,22 +23,13 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('author', 'entity', [
-                'class' => 'AppBundle\Entity\User',
-                'property' => 'id',
-                'required' => true,
-            ])
-            ->add('author', 'entity', [
-                'multiple' => true,
-                'class' => 'AppBundle\Entity\User',
-                'property' => 'id',
-                'required' => false,
-            ])
-            ->add('coverImage', 'url')
             ->add('title', 'text')
-            ->add('introduction', 'text')
             ->add('body', 'textarea')
-        ;
+            ->add('cover', 'url')
+            ->add('author', 'entity', [
+                'class' => 'AppBundle\Entity\User',
+                'property' => 'id',
+            ]);
     }
 
     /**
@@ -64,5 +49,4 @@ class ArticleType extends AbstractType
     {
         return 'article';
     }
-
 }

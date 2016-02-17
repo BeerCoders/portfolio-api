@@ -1,9 +1,8 @@
 <?php
 /**
- * This file is part of the rest-api package.
+ * This file is part of the portfolio-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
- * (c) Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,7 +15,7 @@ use Vardius\Bundle\ListBundle\Filter\Provider\FilterProvider;
 /**
  * Class ArticleFilterProvider
  * @package AppBundle\Filter
- * @author Szymon Kunowski <szymon.kunowski@gmail.com>
+ * @author Rafał Lorenz <vardius@gmail.com>
  */
 class ArticleFilterProvider extends FilterProvider
 {
@@ -26,7 +25,7 @@ class ArticleFilterProvider extends FilterProvider
     public function build()
     {
         $this
-            ->addFilter('title', 'text');
+            ->addFilter('title', 'text')
+            ->addFilter('author', 'entity');
     }
-
 }

@@ -1,9 +1,18 @@
+app:
+   resource: "@AppBundle/Controller/"
+   type:     annotation
+
 root:
     path: /
     defaults:
         _controller: FrameworkBundle:Redirect:urlRedirect
         path: /doc
         permanent: true
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /
+    defaults:  { _format: json }
 
 fos_user_register:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
@@ -18,10 +27,12 @@ fos_user_resetting:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /doc
+    defaults:  { _format: json }
 
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
     defaults:  { _format: json }
+    methods:  [GET, POST, OPTIONS]
 
 #For Implicit Grant or to get Authorization Code no need in our case (password flow)
 #fos_oauth_server_authorize:

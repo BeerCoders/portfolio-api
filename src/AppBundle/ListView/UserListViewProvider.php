@@ -10,9 +10,10 @@
 
 namespace AppBundle\ListView;
 
-use Vardius\Bundle\ListBundle\ListView\ListView;
+use AppBundle\Entity\User;
+use JMS\Serializer\Serializer;
+use Vardius\Bundle\ListBundle\ListView\Factory\ListViewFactory;
 use Vardius\Bundle\ListBundle\ListView\Provider\ListViewProvider;
-
 
 /**
  * Class UserListViewProvider
@@ -29,15 +30,15 @@ class UserListViewProvider extends ListViewProvider
         $listView = $this->listViewFactory->get();
 
         $listView
-            ->addColumn('id', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('username', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('email', 'property', [
-                'sort' => true,
-            ])
+            ->addColumn('id', 'property')
+            ->addColumn('username', 'property')
+            ->addColumn('email', 'property')
+            ->addColumn('name', 'property')
+            ->addColumn('surname', 'property')
+            ->addColumn('avatar', 'property')
+            ->addColumn('enabled', 'property')
+            ->addColumn('roles', 'property')
+            ->addColumn('created', 'property')
             ->addFilter('user_filter', 'provider.users_filter');
 
         return $listView;

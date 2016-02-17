@@ -6,15 +6,19 @@ parameters:
 services:
     user_repository:
         class: Doctrine\ORM\EntityRepository
-        factory: [@doctrine.orm.entity_manager, getRepository]
+        factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - AppBundle\Entity\User
-    grant_type.api_key:
-        class: AppBundle\OAuth\ApiKeyGrantExtension
-        tags:
-            -  { name: fos_oauth_server.grant_extension, uri: 'http://%domain%/grants/api_key' }
-        arguments: ["@user_repository", "@security.encoder_factory"]
+
     fos_user.registration_subscriber:
       class: AppBundle\EventListener\FosUserListener
       tags:
           - { name: kernel.event_subscriber }
+
+    app.elasticsearch.finder:
+      class: AppBundle\Elasticsearch\Finder
+      arguments: ["@service_container"]
+
+    app.mailgun_transport:
+      class: AppBundle\MailGun\Transport\MailgunTransport
+      arguments: ["mailgun_api_domain", "mailgun_api_key", "@logger"]

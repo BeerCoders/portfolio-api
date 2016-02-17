@@ -36,7 +36,7 @@ class AuthCode extends  BaseAuthCode
     protected $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", fetch="EAGER")
      */
     protected $user;
 }

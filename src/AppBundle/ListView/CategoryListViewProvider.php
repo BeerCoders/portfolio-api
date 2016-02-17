@@ -1,9 +1,8 @@
 <?php
 /**
- * This file is part of the rest-api package.
+ * This file is part of the portfolio-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
- * (c) Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,11 +13,10 @@ namespace AppBundle\ListView;
 use Vardius\Bundle\ListBundle\ListView\ListView;
 use Vardius\Bundle\ListBundle\ListView\Provider\ListViewProvider;
 
-
 /**
  * Class CategoryListViewProvider
  * @package AppBundle\ListView
- * @author Szymon Kunowski <szymon.kunowski@gmail.com>
+ * @author Rafał Lorenz <vardius@gmail.com>
  */
 class CategoryListViewProvider extends ListViewProvider
 {
@@ -28,7 +26,6 @@ class CategoryListViewProvider extends ListViewProvider
     public function buildListView()
     {
         $listView = $this->listViewFactory->get();
-
         $listView
             ->addColumn('id', 'property', [
                 'sort' => true,
@@ -52,5 +49,4 @@ class CategoryListViewProvider extends ListViewProvider
 
         return $listView;
     }
-
 }

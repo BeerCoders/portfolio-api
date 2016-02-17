@@ -2,9 +2,12 @@ fos_user:
     db_driver: orm
     firewall_name: api
     user_class: AppBundle\Entity\User
-    registration:
-        form:
-            validation_groups: [TacticRegistration]
-    profile:
-        form:
-            validation_groups: [TacticProfile]
+    from_email:
+        address:        noreply@beercoders.com
+        sender_name:    Tactic
+    resetting:
+        email:
+            from_email:
+                address:        resetting@beercoders.com
+                sender_name:    Beer Coders Resetting
+            template: Email/password_resetting.email.twig

@@ -1,6 +1,6 @@
 #FILTERS
 services:
-  form.type.user_filter:
+  form.type.users_filter:
       class: AppBundle\Form\Type\Filter\UserFilterType
       tags:
           - { name: form.type, alias: user_filter }
@@ -8,26 +8,18 @@ services:
       class: AppBundle\Filter\UserFilterProvider
       parent: vardius_list.filter.provider
 
-  form.type.article_filter:
-      class: AppBundle\Form\Type\Filter\ArticleFilterType
+  form.type.files_filter:
+      class: AppBundle\Form\Type\Filter\FileFilterType
       tags:
-          - { name: form.type, alias: article_filter }
-  provider.article_filter:
-      class: AppBundle\Filter\ArticleFilterProvider
+          - { name: form.type, alias: file_filter }
+  provider.files_filter:
+      class: AppBundle\Filter\FileFilterProvider
       parent: vardius_list.filter.provider
 
-  form.type.category_filter:
-      class: AppBundle\Form\Type\Filter\CategoryFilterType
-      tags:
-          - { name: form.type, alias: category_filter }
-  provider.category_filter:
-      class: AppBundle\Filter\CategoryFilterProvider
-      parent: vardius_list.filter.provider
-
-  form.type.tag_filter:
+  form.type.tags_filter:
       class: AppBundle\Form\Type\Filter\TagFilterType
       tags:
           - { name: form.type, alias: tag_filter }
-  provider.tag_filter:
+  provider.tags_filter:
       class: AppBundle\Filter\TagFilterProvider
       parent: vardius_list.filter.provider

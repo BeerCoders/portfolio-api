@@ -3,7 +3,6 @@
  * This file is part of the rest-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
- * (c) Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,11 +14,10 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
 /**
  * Class TagFilterType
- * @package AppBundle\Form\Type\Filter
- * @author Szymon Kunowski <szymon.kunowski@gmail.com>
+ * @package AppBundle\Form\Type
+ * @author Rafał Lorenz <vardius@gmail.com>
  */
 class TagFilterType extends AbstractType
 {
@@ -29,7 +27,9 @@ class TagFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
+            ->add('name', 'text', [
+                'required' => false
+            ])
             ->setMethod('GET');
     }
 
@@ -40,6 +40,7 @@ class TagFilterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\Tag',
+            'validation_group' => ['filter'],
         ]);
     }
 

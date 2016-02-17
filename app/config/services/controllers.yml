@@ -1,29 +1,22 @@
 #CONTROLLER
 services:
-  crud_controller.user:
+  crud_controller.users:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:User', /users, '@users.list_view', '@form.type.users', null, null, '@user.actions_provider']
+    arguments: ['AppBundle:User', /users, '@users.list_view', '@form.type.users', null, null, '@base.actions_provider']
     tags:
         - { name: vardius_crud.controller }
 
-  crud_controller.article:
+  crud_controller.files:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:Article', /articles, '@articles.list_view', '@form.type.articles', null, null, '@article.actions_provider']
+    arguments: ['AppBundle:File', /files, '@files.list_view', '@form.type.files', null, null, '@base.actions_provider']
     tags:
         - { name: vardius_crud.controller }
 
-  crud_controller.category:
+  crud_controller.tags:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:Category', /categories, '@categories.list_view', '@form.type.categories', null, null, '@category.actions_provider']
-    tags:
-        - { name: vardius_crud.controller }
-
-  crud_controller.tag:
-    class: "%vardius_crud.controller.class%"
-    factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:Tag', /tags, '@tags.list_view', '@form.type.tags', null, null, '@tag.actions_provider']
+    arguments: ['AppBundle:Tag', /tags, '@tags.list_view', '@form.type.tags', null, null, '@base.actions_provider']
     tags:
         - { name: vardius_crud.controller }

@@ -5,6 +5,12 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 class AppKernel extends Kernel
 {
+    public function init()
+    {
+        date_default_timezone_set( 'Europe/Paris' );
+        parent::init();
+    }
+    
     public function registerBundles()
     {
         $bundles = array(
@@ -22,7 +28,7 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
 			
             //Vardius Bundles
             new Vardius\Bundle\ListBundle\VardiusListBundle(),
@@ -30,6 +36,7 @@ class AppKernel extends Kernel
             new Vardius\Bundle\SecurityBundle\VardiusSecurityBundle(),
             //Vardius Dependencies
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
 			
             //Application Bundles
             new AppBundle\AppBundle(),

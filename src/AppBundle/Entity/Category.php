@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the rest-api package.
+ * This file is part of the portfolio-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
  *
@@ -9,7 +9,6 @@
  */
 
 namespace AppBundle\Entity;
-
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +19,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class Category
  * @package AppBundle\Entity
+ *
+ * @author Rafał Lorenz <vardius@gmail.com>
  * @author Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * @ORM\Entity
@@ -33,13 +34,11 @@ class Category
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
     /**
      * @var string
      * @ORM\Column(type="string")
      */
     protected $name;
-
     /**
      * @var integer
      * @ORM\Column(type="integer")
@@ -76,21 +75,11 @@ class Category
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     * @return Category
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /**
@@ -130,7 +119,7 @@ class Category
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|Article[]
      */
     public function getArticles()
     {
@@ -138,12 +127,25 @@ class Category
     }
 
     /**
-     * @param ArrayCollection $articles
+     * @param Article $article
      * @return Category
      */
-    public function setArticles($articles)
+    public function addArticle(Article $article)
     {
-        $this->articles = $articles;
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Article $article
+     * @return Category
+     */
+    public function removeArticle(Article $article)
+    {
+        $this->articles->removeElement($article);
+
         return $this;
     }
 
@@ -182,6 +184,4 @@ class Category
         $this->updated = $updated;
         return $this;
     }
-
-
 }

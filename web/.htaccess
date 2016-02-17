@@ -55,6 +55,8 @@ DirectoryIndex app.php
 
     # Rewrite all other queries to the front controller.
     RewriteRule .? %{ENV:BASE}/app.php [L]
+
+
 </IfModule>
 
 <IfModule !mod_rewrite.c>

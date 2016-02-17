@@ -1,8 +1,8 @@
 <?php
 /**
- * This file is part of the tactic-api package.
+ * This file is part of the rest-api package.
  *
- * (c) Szymon Kunowski <szymon.kunowski@gmail.com>
+ * (c) Rafał Lorenz <vardius@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,6 +19,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class File
  * @package AppBundle\Entity
+ *
+ * @author Rafał Lorenz <vardius@gmail.com>
  * @author Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * @ORM\Entity
@@ -184,8 +186,8 @@ class File
     {
         if (null !== $this->getFile()) {
             $filename = sha1(uniqid(mt_rand(), true));
-            $this->path = $filename.'.'.$this->getFile()->guessExtension();
-            $this->name = $filename.'.'.$this->getFile()->guessExtension();
+            $this->path = $filename . '.' . $this->getFile()->guessExtension();
+            $this->name = $filename . '.' . $this->getFile()->guessExtension();
         }
     }
 
@@ -203,19 +205,19 @@ class File
     {
         return null === $this->path
             ? null
-            : $this->getUploadRootDir().'/'.$this->path;
+            : $this->getUploadRootDir() . '/' . $this->path;
     }
 
     public function getWebPath()
     {
         return null === $this->path
             ? null
-            : $this->getUploadDir().'/'.$this->path;
+            : $this->getUploadDir() . '/' . $this->path;
     }
 
     protected function getUploadRootDir()
     {
-        return __DIR__.'/../../../web/'.$this->getUploadDir();
+        return __DIR__ . '/../../../web/' . $this->getUploadDir();
     }
 
     protected function getUploadDir()
@@ -235,7 +237,7 @@ class File
 
         $this->getFile()->move($this->getUploadRootDir(), $this->path);
         if (isset($this->temp)) {
-            unlink($this->getUploadRootDir().'/'.$this->temp);
+            unlink($this->getUploadRootDir() . '/' . $this->temp);
             $this->temp = null;
         }
         $this->file = null;

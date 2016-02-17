@@ -3,7 +3,6 @@
  * This file is part of the rest-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
- * (c) Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,7 +15,7 @@ use Vardius\Bundle\ListBundle\Filter\Provider\FilterProvider;
 /**
  * Class TagFilterProvider
  * @package AppBundle\Filter
- * @author Szymon Kunowski <szymon.kunowski@gmail.com>
+ * @author Rafał Lorenz <vardius@gmail.com>
  */
 class TagFilterProvider extends FilterProvider
 {
@@ -25,8 +24,7 @@ class TagFilterProvider extends FilterProvider
      */
     public function build()
     {
-        $this
-            ->addFilter('name', 'text');
+        $this->addFilter('name', 'text');
     }
 
 }

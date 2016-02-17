@@ -10,7 +10,9 @@
 
 namespace AppBundle\Form\Type;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,8 +30,18 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text')
-            ->add('email', 'email');
+            ->add('name', 'text', ['required' => false,])
+            ->add('email', 'email', ['required' => false,])
+            ->add('surname', 'text', ['required' => false,])
+            ->add('username', 'text', ['required' => false,])
+            ->add('avatar', 'url', ['required' => false,])
+            ->add('birth', 'date', [
+                'widget' => 'single_text',
+                'format' => 'dd/MM/yyyy',
+                'required' => false,
+            ])
+            ->add('enabled', 'checkbox', ['required' => false])
+        ;
     }
 
     /**
@@ -39,6 +51,7 @@ class UserType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\User',
+            'validation_group' => ['Profile'],
         ]);
     }
 

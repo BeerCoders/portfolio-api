@@ -4,12 +4,8 @@ services:
     class: AppBundle\ListView\UserListViewProvider
     parent: vardius_list.list_view.provider
 
-  articles.list_view:
-    class: AppBundle\ListView\ArticleListViewProvider
-    parent: vardius_list.list_view.provider
-
-  categories.list_view:
-    class: AppBundle\ListView\CategoryListViewProvider
+  files.list_view:
+    class: AppBundle\ListView\FileListViewProvider
     parent: vardius_list.list_view.provider
 
   tags.list_view:

@@ -1,0 +1,60 @@
+<?php
+/**
+ * This file is part of the tactic-api package.
+ *
+ * (c) Szymon Kunowski <szymon.kunowski@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class TeamUser
+ * @package AppBundle\Entity
+ * @author Szymon Kunowski <szymon.kunowski@gmail.com>
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="team_user")
+ */
+class TeamUser
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int
+     */
+    protected $id;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    protected $role;
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="userTeams")
+     */
+    protected $user;
+
+    /**
+     * @var Team
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="teamUsers")
+     */
+    protected $team;
+
+    
+
+
+    public function __construct()
+    {
+
+    }
+
+
+}

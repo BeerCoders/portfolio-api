@@ -1,5 +1,6 @@
 vardius_list:
     title: List
     limit: 10
+
 vardius_security:
     userClass: AppBundle\Entity\User

@@ -35,11 +35,6 @@ class Client extends BaseClient
      */
     protected $name;
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * @return string
      */
@@ -56,5 +51,37 @@ class Client extends BaseClient
     {
         $this->name = $name;
         return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param \DateTime $created
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+
+    /**
+     * @param \DateTime $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
     }
 }

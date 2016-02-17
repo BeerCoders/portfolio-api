@@ -7,7 +7,6 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 namespace UserBundle\Form\Type;
 
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,7 +20,6 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
  */
 class RegistrationFormType extends BaseType
 {
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -31,5 +29,4 @@ class RegistrationFormType extends BaseType
         parent::buildForm($builder, $options);
         $builder->remove('username');
     }
-
 }

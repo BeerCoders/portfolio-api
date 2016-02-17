@@ -1,6 +1,0 @@
-jms_serializer:
-    metadata:
-        directories:
-            FOSUB:
-                namespace_prefix: "FOS\\UserBundle"
-                path: "%kernel.root_dir%/Resources/serializer/FOSUserBundle"

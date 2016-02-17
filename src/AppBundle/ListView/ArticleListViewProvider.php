@@ -1,9 +1,8 @@
 <?php
 /**
- * This file is part of the rest-api package.
+ * This file is part of the portfolio-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
- * (c) Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,14 +10,10 @@
 
 namespace AppBundle\ListView;
 
-use Vardius\Bundle\ListBundle\ListView\ListView;
-use Vardius\Bundle\ListBundle\ListView\Provider\ListViewProvider;
-
-
 /**
  * Class ArticleListViewProvider
  * @package AppBundle\ListView
- * @author Szymon Kunowski <szymon.kunowski@gmail.com>
+ * @author Rafał Lorenz <vardius@gmail.com>
  */
 class ArticleListViewProvider extends ListViewProvider
 {
@@ -28,7 +23,6 @@ class ArticleListViewProvider extends ListViewProvider
     public function buildListView()
     {
         $listView = $this->listViewFactory->get();
-
         $listView
             ->addColumn('id', 'property', [
                 'sort' => true,
@@ -42,17 +36,17 @@ class ArticleListViewProvider extends ListViewProvider
             ->addColumn('category', 'property', [
                 'sort' => true,
             ])
-            ->addColumn('coverImage', 'property', [
+            ->addColumn('cover', 'property', [
                 'sort' => true,
             ])
             ->addColumn('title', 'property', [
                 'sort' => true,
             ])
             ->addColumn('introduction', 'property', [
-                'sort' => true,
+                'sort' => false,
             ])
             ->addColumn('body', 'property', [
-                'sort' => true,
+                'sort' => false,
             ])
             ->addColumn('created', 'property', [
                 'sort' => true,
@@ -64,5 +58,4 @@ class ArticleListViewProvider extends ListViewProvider
 
         return $listView;
     }
-
 }

@@ -1,9 +1,8 @@
 <?php
 /**
- * This file is part of the rest-api package.
+ * This file is part of the portfolio-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
- * (c) Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,15 +10,10 @@
 
 namespace AppBundle\Form\Type\Filter;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
-
 /**
  * Class CategoryFilterType
  * @package AppBundle\Form\Type\Filter
- * @author Szymon Kunowski <szymon.kunowski@gmail.com>
+ * @author Rafał Lorenz <vardius@gmail.com>
  */
 class CategoryFilterType extends AbstractType
 {
@@ -50,5 +44,4 @@ class CategoryFilterType extends AbstractType
     {
         return 'category_filter';
     }
-
 }

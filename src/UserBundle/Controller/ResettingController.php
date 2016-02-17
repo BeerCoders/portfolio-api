@@ -27,7 +27,16 @@ class ResettingController extends \FOS\UserBundle\Controller\ResettingController
      *  resource=false,
      *  section="Resetting",
      *  description="Request reset user password: submit form and send email",
-     *  input="FOS\UserBundle\Form\Type\ResettingFormType"
+     *  requirements={
+     *      {
+     *          "name"="username",
+     *          "dataType"="string",
+     *          "description"="Username or email"
+     *      }
+     *  },
+     *  parameters={
+     *      {"name"="username", "dataType"="string", "required"=true, "description"="Username or email"}
+     *  }
      * )
      */
     public function sendEmailAction(Request $request)
@@ -59,7 +68,24 @@ class ResettingController extends \FOS\UserBundle\Controller\ResettingController
             $user->setConfirmationToken($tokenGenerator->generateToken());
         }
 
-        $this->get('fos_user.mailer')->sendResettingEmailMessage($user);
+        $template = $this->getParameter('fos_user.resetting.email.template');
+        $rendered = $this->render($template, array(
+            'user' => $user,
+            'confirmationUrl' => $this->getParameter('dashboard_domain') . '/reset/' . $user->getConfirmationToken()
+        ));
+
+        $renderedLines = explode("\n", trim($rendered));
+        $subject = $renderedLines[0];
+        $body = implode("\n", array_slice($renderedLines, 1));
+
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setFrom($this->getParameter('fos_user.resetting.email.from_email'))
+            ->setTo($user->getEmail())
+            ->setBody($body);
+
+        $this->get('mailer')->send($message);
+
         $user->setPasswordRequestedAt(new \DateTime());
         $this->get('fos_user.user_manager')->updateUser($user);
 
@@ -72,7 +98,8 @@ class ResettingController extends \FOS\UserBundle\Controller\ResettingController
      * @ApiDoc(
      *  resource=false,
      *  section="Resetting",
-     *  description="Reset user password"
+     *  description="Reset user password",
+     *  input="FOS\UserBundle\Form\Type\ResettingFormType"
      * )
      */
     public function resetAction(Request $request, $token)

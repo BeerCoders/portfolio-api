@@ -10,20 +10,21 @@
 
 namespace AppBundle\Entity;
 
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
-use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Tag
  * @package AppBundle\Entity
+ *
+ * @author Rafał Lorenz <vardius@gmail.com>
  * @author Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * @ORM\Entity
- * @ORM\Table(name="tag")
+ * @ORM\Table(name="tags")
  */
 class Tag
 {
@@ -31,23 +32,20 @@ class Tag
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int
      */
     protected $id;
 
     /**
      * @var string
-     * @ORM\Column(type="string")
-     * @Assert\Length(
-     *      min = 1,
-     *      max = 50,
-     *      minMessage = "Your name must be at least {{ limit }} characters long",
-     *      maxMessage = "Your name cannot be longer than {{ limit }} characters"
-     * )
+     * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank(groups={"update"})
+     * @Serializer\Groups({"Default"})
      */
     protected $name;
 
     /**
-     * @var ArrayCollection
+     * @var ArrayCollection|Article[]
      * @ORM\ManyToMany(targetEntity="Article", inversedBy="tags", cascade={"all"})
      * @ORM\JoinTable(name="article_tag")
      *
@@ -77,21 +75,13 @@ class Tag
     }
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     * @return Tag
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
     }
 
     /**
@@ -113,7 +103,7 @@ class Tag
     }
 
     /**
-     * @return ArrayCollection
+     * @return ArrayCollection|Article[]
      */
     public function getArticles()
     {
@@ -121,12 +111,25 @@ class Tag
     }
 
     /**
-     * @param ArrayCollection $articles
+     * @param Article $article
      * @return Tag
      */
-    public function setArticles($articles)
+    public function addArticle(Article $article)
     {
-        $this->articles = $articles;
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+        }
+        return $this;
+    }
+
+    /**
+     * @param Article $article
+     * @return Tag
+     */
+    public function removeArticle(Article $article)
+    {
+        $this->articles->removeElement($article);
+
         return $this;
     }
 

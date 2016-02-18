@@ -9,6 +9,7 @@ namespace AppBundle\EventListener;
 
 use AppBundle\Entity\User;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Vardius\Bundle\CrudBundle\Event\CrudEvent;
@@ -42,7 +43,28 @@ class CrudSubscriber implements EventSubscriberInterface
     {
         return array(
             CrudEvents::CRUD_PRE_CREATE => 'preCreate',
+            CrudEvents::CRUD_PRE_UPDATE => 'checkAccess',
+            CrudEvents::CRUD_PRE_DELETE => 'checkAccess',
         );
+    }
+
+    public function checkAccess(CrudEvent $event)
+    {
+        $data = $event->getData();
+        if ($data instanceof FormInterface) {
+            $data = $data->getData();
+        }
+
+        if ($data instanceof User) {
+            if ($data !== $this->user) {
+
+                throw new AccessDeniedException();
+            }
+
+        } elseif (method_exists($data, 'getUser') && $this->user !== $data->getUser()) {
+
+            throw new AccessDeniedException();
+        }
     }
 
     public function preCreate(CrudEvent $event)

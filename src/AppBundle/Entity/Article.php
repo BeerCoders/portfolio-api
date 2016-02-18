@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * @ORM\Entity
- * @ORM\Table(name="article")
+ * @ORM\Table(name="articles")
  */
 class Article
 {

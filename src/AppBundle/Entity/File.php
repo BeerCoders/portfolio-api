@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @author Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * @ORM\Entity
- * @ORM\Table(name="file")
+ * @ORM\Table(name="files")
  * @ORM\HasLifecycleCallbacks
  */
 class File

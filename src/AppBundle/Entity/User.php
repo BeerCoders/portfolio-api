@@ -23,7 +23,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @author Rafał Lorenz <vardius@gmail.com>
  *
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(name="users")
  */
 class User extends BaseUser
 {
@@ -51,6 +51,13 @@ class User extends BaseUser
     protected $surname;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank(groups={"Profile"})
+     */
+    protected $title;
+
+    /**
      * @var \DateTime $birth
      *
      * @ORM\Column(type="datetime")
@@ -58,6 +65,20 @@ class User extends BaseUser
      * @Assert\NotBlank(groups={"Registration", "Profile"})
      */
     protected $birth;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank(groups={"Profile"})
+     */
+    protected $location;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text", nullable=true)
+     * @Assert\NotBlank(groups={"Profile"})
+     */
+    protected $description;
 
     /**
      * @var string
@@ -74,6 +95,18 @@ class User extends BaseUser
      * @Serializer\MaxDepth(2)
      */
     protected $articles;
+
+    /**
+     * @var ArrayCollection|Job[]
+     * @ORM\OneToMany(targetEntity="Job", mappedBy="user", cascade={"remove"})
+     */
+    protected $jobs;
+
+    /**
+     * @var ArrayCollection|Skill[]
+     * @ORM\OneToMany(targetEntity="Skill", mappedBy="user", cascade={"remove"})
+     */
+    protected $skills;
 
     /**
      * @var \DateTime $created
@@ -95,6 +128,8 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->articles = new ArrayCollection();
+        $this->jobs = new ArrayCollection();
+        $this->skills = new ArrayCollection();
     }
 
     /**
@@ -189,11 +224,129 @@ class User extends BaseUser
     }
 
     /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     * @return User
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param string $location
+     * @return User
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     * @return User
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
      * @return ArrayCollection|Article[]
      */
     public function getArticles()
     {
         return $this->articles;
+    }
+
+    /**
+     * @return ArrayCollection|Job[]
+     */
+    public function getJobs()
+    {
+        return $this->jobs;
+    }
+
+    /**
+     * @param Job $job
+     * @return $this
+     */
+    public function addJob(Job $job)
+    {
+        if (!$this->jobs->contains($job)) {
+            $this->jobs->add($job);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Job $job
+     * @return $this
+     */
+    public function removeJob(Job $job)
+    {
+        $this->jobs->removeElement($job);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|Skill[]
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    /**
+     * @param Skill $skill
+     * @return $this
+     */
+    public function addSkill(Skill $skill)
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills->add($skill);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Skill $skill
+     * @return $this
+     */
+    public function removeSkill(Skill $skill)
+    {
+        $this->skills->removeElement($skill);
+
+        return $this;
     }
 
     /**

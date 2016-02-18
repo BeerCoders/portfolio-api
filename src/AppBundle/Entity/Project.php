@@ -10,23 +10,20 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Class Category
+ * Class Project
  * @package AppBundle\Entity
- *
  * @author Rafał Lorenz <vardius@gmail.com>
- * @author Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * @ORM\Entity
- * @ORM\Table(name="categories")
+ * @ORM\Table(name="projects")
  */
-class Category
+class Project
 {
     /**
      * @ORM\Id
@@ -34,24 +31,22 @@ class Category
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    /**
-     * @var string
-     * @ORM\Column(type="string")
-     */
-    protected $name;
-    /**
-     * @var integer
-     * @ORM\Column(type="integer")
-     */
-    protected $position = 0;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Article", mappedBy="author")
+     * @var string
      *
-     * @Serializer\MaxDepth(2)
+     * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank()
      */
-    protected $articles;
+    protected $description;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank(groups={"Profile"})
+     * @Assert\Url()
+     */
+    protected $logo;
 
     /**
      * @var \DateTime $created
@@ -69,13 +64,8 @@ class Category
      */
     protected $updated;
 
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-    }
-
     /**
-     * @return int
+     * @return mixed
      */
     public function getId()
     {
@@ -85,67 +75,36 @@ class Category
     /**
      * @return string
      */
-    public function getName()
+    public function getDescription()
     {
-        return $this->name;
+        return $this->description;
     }
 
     /**
-     * @param string $name
-     * @return Category
+     * @param string $description
+     * @return Project
      */
-    public function setName($name)
+    public function setDescription($description)
     {
-        $this->name = $name;
+        $this->description = $description;
         return $this;
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getPosition()
+    public function getLogo()
     {
-        return $this->position;
+        return $this->logo;
     }
 
     /**
-     * @param int $position
-     * @return Category
+     * @param string $logo
+     * @return Project
      */
-    public function setPosition($position)
+    public function setLogo($logo)
     {
-        $this->position = $position;
-        return $this;
-    }
-
-    /**
-     * @return ArrayCollection|Article[]
-     */
-    public function getArticles()
-    {
-        return $this->articles;
-    }
-
-    /**
-     * @param Article $article
-     * @return Category
-     */
-    public function addArticle(Article $article)
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Article $article
-     * @return Category
-     */
-    public function removeArticle(Article $article)
-    {
-        $this->articles->removeElement($article);
-
+        $this->logo = $logo;
         return $this;
     }
 
@@ -159,7 +118,7 @@ class Category
 
     /**
      * @param \DateTime $created
-     * @return Category
+     * @return Project
      */
     public function setCreated($created)
     {
@@ -177,11 +136,12 @@ class Category
 
     /**
      * @param \DateTime $updated
-     * @return Category
+     * @return Project
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
         return $this;
     }
+
 }

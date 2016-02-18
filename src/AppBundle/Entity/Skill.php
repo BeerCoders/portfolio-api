@@ -10,23 +10,20 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Class Category
+ * Class Skill
  * @package AppBundle\Entity
- *
  * @author Rafał Lorenz <vardius@gmail.com>
- * @author Szymon Kunowski <szymon.kunowski@gmail.com>
  *
  * @ORM\Entity
- * @ORM\Table(name="categories")
+ * @ORM\Table(name="skills")
  */
-class Category
+class Skill
 {
     /**
      * @ORM\Id
@@ -34,24 +31,30 @@ class Category
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
     /**
      * @var string
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      */
     protected $name;
-    /**
-     * @var integer
-     * @ORM\Column(type="integer")
-     */
-    protected $position = 0;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Article", mappedBy="author")
-     *
-     * @Serializer\MaxDepth(2)
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 5,
+     * )
+     * @Assert\NotBlank()
      */
-    protected $articles;
+    protected $value;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="skills")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=false)
+     */
+    protected $user;
 
     /**
      * @var \DateTime $created
@@ -69,13 +72,8 @@ class Category
      */
     protected $updated;
 
-    public function __construct()
-    {
-        $this->articles = new ArrayCollection();
-    }
-
     /**
-     * @return int
+     * @return mixed
      */
     public function getId()
     {
@@ -92,7 +90,7 @@ class Category
 
     /**
      * @param string $name
-     * @return Category
+     * @return Skill
      */
     public function setName($name)
     {
@@ -101,53 +99,42 @@ class Category
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getPosition()
+    public function getValue()
     {
-        return $this->position;
+        return $this->value;
     }
 
     /**
-     * @param int $position
-     * @return Category
+     * @param mixed $value
+     * @return Skill
      */
-    public function setPosition($position)
+    public function setValue($value)
     {
-        $this->position = $position;
+        $this->value = $value;
         return $this;
     }
 
     /**
-     * @return ArrayCollection|Article[]
+     * @return User
      */
-    public function getArticles()
+    public function getUser()
     {
-        return $this->articles;
+        return $this->user;
     }
 
     /**
-     * @param Article $article
-     * @return Category
+     * @param User $user
+     * @return Skill
      */
-    public function addArticle(Article $article)
+    public function setUser(User $user)
     {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
-        }
-        return $this;
-    }
-
-    /**
-     * @param Article $article
-     * @return Category
-     */
-    public function removeArticle(Article $article)
-    {
-        $this->articles->removeElement($article);
+        $this->user = $user;
 
         return $this;
     }
+
 
     /**
      * @return \DateTime
@@ -159,7 +146,7 @@ class Category
 
     /**
      * @param \DateTime $created
-     * @return Category
+     * @return Skill
      */
     public function setCreated($created)
     {
@@ -177,11 +164,12 @@ class Category
 
     /**
      * @param \DateTime $updated
-     * @return Category
+     * @return Skill
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
         return $this;
     }
+
 }

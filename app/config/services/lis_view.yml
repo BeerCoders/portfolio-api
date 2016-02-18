@@ -11,3 +11,15 @@ services:
   tags.list_view:
     class: AppBundle\ListView\TagListViewProvider
     parent: vardius_list.list_view.provider
+
+  projects.list_view:
+    class: AppBundle\ListView\ProjectListViewProvider
+    parent: vardius_list.list_view.provider
+
+  skills.list_view:
+    class: AppBundle\ListView\SkillListViewProvider
+    parent: vardius_list.list_view.provider
+
+  jobs.list_view:
+    class: AppBundle\ListView\JobListViewProvider
+    parent: vardius_list.list_view.provider

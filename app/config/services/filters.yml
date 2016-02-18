@@ -23,3 +23,19 @@ services:
   provider.tags_filter:
       class: AppBundle\Filter\TagFilterProvider
       parent: vardius_list.filter.provider
+
+  form.type.skills_filter:
+      class: AppBundle\Form\Type\Filter\SkillFilterType
+      tags:
+          - { name: form.type, alias: skill_filter }
+  provider.tags_filter:
+      class: AppBundle\Filter\SkillFilterProvider
+      parent: vardius_list.filter.provider
+
+  form.type.jobs_filter:
+      class: AppBundle\Form\Type\Filter\JobFilterType
+      tags:
+          - { name: form.type, alias: job_filter }
+  provider.tags_filter:
+      class: AppBundle\Filter\JobFilterProvider
+      parent: vardius_list.filter.provider

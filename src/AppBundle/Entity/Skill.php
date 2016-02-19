@@ -40,7 +40,6 @@ class Skill
     protected $name;
 
     /**
-     * @ORM\Id
      * @ORM\Column(type="integer")
      * @Assert\Range(
      *      min = 1,

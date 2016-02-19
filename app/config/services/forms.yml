@@ -30,3 +30,8 @@ services:
       tags:
           - { name: form.type, alias: project }
 
+  form.type.social_medias:
+      class: AppBundle\Form\Type\SocialMediaType
+      tags:
+          - { name: form.type, alias: social_media }
+

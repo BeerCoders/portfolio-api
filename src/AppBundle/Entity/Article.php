@@ -77,7 +77,7 @@ class Article
 
     /**
      * @var ArrayCollection|Tag[]
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles", cascade={"all"})
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="articles")
      * @ORM\JoinTable(name="article_tag")
      *
      * @Serializer\MaxDepth(2)
@@ -218,6 +218,7 @@ class Article
     public function addArticle(Tag $tag)
     {
         if (!$this->tags->contains($tag)) {
+            $tag->addArticle($this);
             $this->tags->add($tag);
         }
         return $this;

@@ -41,3 +41,17 @@ services:
     arguments: ['AppBundle:Project', /projects, '@projects.list_view', '@form.type.projects', null, null, '@base.actions_provider']
     tags:
         - { name: vardius_crud.controller }
+
+  crud_controller.social_medias:
+    class: "%vardius_crud.controller.class%"
+    factory: ["@vardius_crud.controller.factory", get]
+    arguments: ['AppBundle:SocialMedia', /social_medias, '@social_medias.list_view', '@form.type.social_medias', null, null, '@base.actions_provider']
+    tags:
+        - { name: vardius_crud.controller }
+
+  crud_controller.icons:
+    class: "%vardius_crud.controller.class%"
+    factory: ["@vardius_crud.controller.factory", get]
+    arguments: ['AppBundle:Icon', /icons, '@icons.list_view', null, null, null, '@icon.actions_provider']
+    tags:
+        - { name: vardius_crud.controller }

@@ -46,8 +46,7 @@ class Tag
 
     /**
      * @var ArrayCollection|Article[]
-     * @ORM\ManyToMany(targetEntity="Article", inversedBy="tags", cascade={"all"})
-     * @ORM\JoinTable(name="article_tag")
+     * @ORM\ManyToMany(targetEntity="Article", mappedBy="tags")
      *
      * @Serializer\MaxDepth(2)
      */

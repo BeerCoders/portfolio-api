@@ -10,17 +10,17 @@
 
 namespace AppBundle\ListView;
 
-use AppBundle\Entity\User;
+use AppBundle\Entity\Tag;
 use JMS\Serializer\Serializer;
 use Vardius\Bundle\ListBundle\ListView\Factory\ListViewFactory;
 use Vardius\Bundle\ListBundle\ListView\Provider\ListViewProvider;
 
 /**
- * Class UserListViewProvider
+ * Class SocialMediaListViewProvider
  * @package AppBundle\ListView
  * @author Rafał Lorenz <vardius@gmail.com>
  */
-class UserListViewProvider extends ListViewProvider
+class SocialMediaListViewProvider extends ListViewProvider
 {
     /**
      * @inheritDoc
@@ -31,23 +31,13 @@ class UserListViewProvider extends ListViewProvider
 
         $listView
             ->addColumn('id', 'property')
-            ->addColumn('username', 'property')
-            ->addColumn('email', 'property')
             ->addColumn('name', 'property')
-            ->addColumn('surname', 'property')
-            ->addColumn('title', 'property')
-            ->addColumn('birth', 'property')
-            ->addColumn('location', 'property')
-            ->addColumn('description', 'property')
-            ->addColumn('jobs', 'property')
-            ->addColumn('skills', 'property')
-            ->addColumn('socialMedias', 'property')
-            ->addColumn('avatar', 'property')
-            ->addColumn('enabled', 'property')
-            ->addColumn('roles', 'property')
+            ->addColumn('icon', 'property')
+            ->addColumn('url', 'property')
+            ->addColumn('user', 'property')
             ->addColumn('created', 'property')
             ->addColumn('updated', 'property')
-            ->addFilter('user_filter', 'provider.users_filter');
+            ->addFilter('social_media_filter', 'provider.social_medias_filter');
 
         return $listView;
     }

@@ -32,6 +32,8 @@ class TagListViewProvider extends ListViewProvider
         $listView
             ->addColumn('id', 'property')
             ->addColumn('name', 'property')
+            ->addColumn('created', 'property')
+            ->addColumn('updated', 'property')
             ->addFilter('tag_filter', 'provider.tags_filter');
 
         return $listView;

@@ -23,3 +23,11 @@ services:
   jobs.list_view:
     class: AppBundle\ListView\JobListViewProvider
     parent: vardius_list.list_view.provider
+
+  social_medias.list_view:
+    class: AppBundle\ListView\SocialMediaListViewProvider
+    parent: vardius_list.list_view.provider
+
+  icons.list_view:
+    class: AppBundle\ListView\IconListViewProvider
+    parent: vardius_list.list_view.provider

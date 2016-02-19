@@ -109,6 +109,13 @@ class User extends BaseUser
     protected $skills;
 
     /**
+     * @var ArrayCollection|SocialMedia[]
+     *
+     * @ORM\OneToMany(targetEntity="SocialMedia", mappedBy="user", cascade={"remove"})
+     */
+    protected $socialMedias;
+
+    /**
      * @var \DateTime $created
      *
      * @Gedmo\Timestampable(on="create")
@@ -130,6 +137,7 @@ class User extends BaseUser
         $this->articles = new ArrayCollection();
         $this->jobs = new ArrayCollection();
         $this->skills = new ArrayCollection();
+        $this->socialMedias = new ArrayCollection();
     }
 
     /**
@@ -345,6 +353,38 @@ class User extends BaseUser
     public function removeSkill(Skill $skill)
     {
         $this->skills->removeElement($skill);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|SocialMedia[]
+     */
+    public function getSocialMedias()
+    {
+        return $this->socialMedias;
+    }
+
+    /**
+     * @param SocialMedia $media
+     * @return $this
+     */
+    public function addSocialMedia(SocialMedia $media)
+    {
+        if (!$this->socialMedias->contains($media)) {
+            $this->socialMedias->add($media);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param SocialMedia $media
+     * @return $this
+     */
+    public function removeSocialMedia(SocialMedia $media)
+    {
+        $this->socialMedias->removeElement($media);
 
         return $this;
     }

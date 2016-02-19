@@ -31,7 +31,7 @@ class ClearCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('tactic:oauth-server:clean')
+            ->setName('app:oauth:clean')
             ->setDescription('Clean expired tokens');
     }
 

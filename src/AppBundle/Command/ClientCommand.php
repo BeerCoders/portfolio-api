@@ -30,7 +30,7 @@ class ClientCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('tactic:oauth-server:client-create')
+            ->setName('app:oauth:create')
             ->setDescription('Create a new client')
             ->addArgument('name', InputArgument::REQUIRED, 'Sets the client name', null)
             ->addOption('redirect-uri', null, InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'Sets redirect uri for client. Use this option multiple times to set multiple redirect URIs.', null)

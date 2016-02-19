@@ -24,20 +24,20 @@ services:
   crud_controller.skills:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:Skill', /tags, '@skills.list_view', '@form.type.skills', null, null, '@base.actions_provider']
+    arguments: ['AppBundle:Skill', /skills, '@skills.list_view', '@form.type.skills', null, null, '@base.actions_provider']
     tags:
         - { name: vardius_crud.controller }
 
   crud_controller.jobs:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:Job', /tags, '@jobs.list_view', '@form.type.jobs', null, null, '@base.actions_provider']
+    arguments: ['AppBundle:Job', /jobs, '@jobs.list_view', '@form.type.jobs', null, null, '@base.actions_provider']
     tags:
         - { name: vardius_crud.controller }
 
   crud_controller.projects:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:Project', /tags, '@projects.list_view', '@form.type.projects', null, null, '@base.actions_provider']
+    arguments: ['AppBundle:Project', /projects, '@projects.list_view', '@form.type.projects', null, null, '@base.actions_provider']
     tags:
         - { name: vardius_crud.controller }

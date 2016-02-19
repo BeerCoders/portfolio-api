@@ -3,3 +3,7 @@ services:
   base.actions_provider:
     class: AppBundle\Action\BaseActionProvider
     parent: vardius_crud.action.provider
+
+  icon.actions_provider:
+    class: AppBundle\Action\IconActionProvider
+    parent: vardius_crud.action.provider

@@ -31,6 +31,7 @@ class FileListViewProvider extends ListViewProvider
             ->addColumn('name', 'property')
             ->addColumn('path', 'property')
             ->addColumn('created', 'property')
+            ->addColumn('updated', 'property')
             ->addFilter('file_filter', 'provider.files_filter');
 
         return $listView;

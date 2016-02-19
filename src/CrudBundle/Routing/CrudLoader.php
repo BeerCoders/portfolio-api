@@ -136,10 +136,19 @@ class CrudLoader extends \Vardius\Bundle\CrudBundle\Routing\CrudLoader implement
      */
     protected function getFilters($section)
     {
+        if (!$this->container->has('provider.' . strtolower($section) . '_filter')) {
+            return [];
+        }
+
+        if (!$this->container->has('form.type.' . strtolower($section) . '_filter')) {
+            return [];
+        }
+
         /** FilterProvider */
         $provider = $this->container->get('provider.' . strtolower($section) . '_filter');
         /** @var AbstractType $form */
         $form = $this->container->get('form.type.' . strtolower($section) . '_filter');
+
         $filters = $provider->getFilters();
 
         $docFilters = [];

@@ -28,7 +28,7 @@ services:
       class: AppBundle\Form\Type\Filter\SkillFilterType
       tags:
           - { name: form.type, alias: skill_filter }
-  provider.tags_filter:
+  provider.skills_filter:
       class: AppBundle\Filter\SkillFilterProvider
       parent: vardius_list.filter.provider
 
@@ -36,6 +36,22 @@ services:
       class: AppBundle\Form\Type\Filter\JobFilterType
       tags:
           - { name: form.type, alias: job_filter }
-  provider.tags_filter:
+  provider.jobs_filter:
       class: AppBundle\Filter\JobFilterProvider
+      parent: vardius_list.filter.provider
+
+  form.type.social_medias_filter:
+      class: AppBundle\Form\Type\Filter\SocialMediaFilterType
+      tags:
+          - { name: form.type, alias: social_media_filter }
+  provider.social_medias_filter:
+      class: AppBundle\Filter\SocialMediaFilterProvider
+      parent: vardius_list.filter.provider
+
+  form.type.icons_filter:
+      class: AppBundle\Form\Type\Filter\IconFilterType
+      tags:
+          - { name: form.type, alias: icon_filter }
+  provider.icons_filter:
+      class: AppBundle\Filter\IconFilterProvider
       parent: vardius_list.filter.provider

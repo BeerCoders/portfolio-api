@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the portfolio-api package.
+ * This file is part of the rest-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
  *
@@ -16,11 +16,11 @@ use Vardius\Bundle\ListBundle\ListView\Factory\ListViewFactory;
 use Vardius\Bundle\ListBundle\ListView\Provider\ListViewProvider;
 
 /**
- * Class SkillListViewProvider
+ * Class IconListViewProvider
  * @package AppBundle\ListView
  * @author Rafał Lorenz <vardius@gmail.com>
  */
-class SkillListViewProvider extends ListViewProvider
+class IconListViewProvider extends ListViewProvider
 {
     /**
      * @inheritDoc
@@ -32,10 +32,8 @@ class SkillListViewProvider extends ListViewProvider
         $listView
             ->addColumn('id', 'property')
             ->addColumn('name', 'property')
-            ->addColumn('user', 'property')
-            ->addColumn('created', 'property')
-            ->addColumn('updated', 'property')
-            ->addFilter('skill_filter', 'provider.skills_filter');
+            ->addColumn('class', 'property')
+            ->addFilter('icon_filter', 'provider.icons_filter');
 
         return $listView;
     }

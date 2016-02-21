@@ -218,7 +218,6 @@ class Article
     public function addArticle(Tag $tag)
     {
         if (!$this->tags->contains($tag)) {
-            $tag->addArticle($this);
             $this->tags->add($tag);
         }
         return $this;

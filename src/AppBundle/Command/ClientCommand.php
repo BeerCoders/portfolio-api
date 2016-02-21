@@ -25,7 +25,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ClientCommand extends ContainerAwareCommand
 {
     /**
-     *
+     * @example: php app/console app:oauth-server:client:create --redirect-uri="CLIENT_HOST" --grant-type="password" --grant-type="refresh-token" --grant-type="client_credentials"
      */
     protected function configure()
     {

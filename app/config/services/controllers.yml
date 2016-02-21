@@ -55,3 +55,17 @@ services:
     arguments: ['AppBundle:Icon', /icons, '@icons.list_view', null, null, null, '@icon.actions_provider']
     tags:
         - { name: vardius_crud.controller }
+
+  crud_controller.categories:
+    class: "%vardius_crud.controller.class%"
+    factory: ["@vardius_crud.controller.factory", get]
+    arguments: ['AppBundle:Category', /categories, '@categories.list_view', null, null, null, '@icon.actions_provider']
+    tags:
+        - { name: vardius_crud.controller }
+
+  crud_controller.articles:
+    class: "%vardius_crud.controller.class%"
+    factory: ["@vardius_crud.controller.factory", get]
+    arguments: ['AppBundle:Article', /articles, '@articles.list_view', null, null, null, '@icon.actions_provider']
+    tags:
+        - { name: vardius_crud.controller }

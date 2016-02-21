@@ -55,3 +55,19 @@ services:
   provider.icons_filter:
       class: AppBundle\Filter\IconFilterProvider
       parent: vardius_list.filter.provider
+
+  form.type.categories_filter:
+      class: AppBundle\Form\Type\Filter\CategoryFilterType
+      tags:
+          - { name: form.type, alias: category_filter }
+  provider.categories_filter:
+      class: AppBundle\Filter\CategoryFilterProvider
+      parent: vardius_list.filter.provider
+
+  form.type.articles_filter:
+      class: AppBundle\Form\Type\Filter\ArticleFilterType
+      tags:
+          - { name: form.type, alias: article_filter }
+  provider.articles_filter:
+      class: AppBundle\Filter\ArticleFilterProvider
+      parent: vardius_list.filter.provider

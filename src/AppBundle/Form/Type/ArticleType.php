@@ -10,6 +10,10 @@
 
 namespace AppBundle\Form\Type;
 
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
  * Class ArticleType
  * @package AppBundle\Form\Type
@@ -24,7 +28,7 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title', 'text')
-            ->add('body', 'textarea')
+            ->add('body', 'text')
             ->add('cover', 'url')
             ->add('author', 'entity', [
                 'class' => 'AppBundle\Entity\User',

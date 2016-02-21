@@ -10,6 +10,10 @@
 
 namespace AppBundle\Form\Type\Filter;
 
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
  * Class CategoryFilterType
  * @package AppBundle\Form\Type\Filter
@@ -23,7 +27,9 @@ class CategoryFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
+            ->add('name', 'text', [
+                'required' => false
+            ])
             ->setMethod('GET');
     }
 

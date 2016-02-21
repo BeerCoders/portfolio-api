@@ -10,9 +10,6 @@
 
 namespace AppBundle\ListView;
 
-use AppBundle\Entity\Tag;
-use JMS\Serializer\Serializer;
-use Vardius\Bundle\ListBundle\ListView\Factory\ListViewFactory;
 use Vardius\Bundle\ListBundle\ListView\Provider\ListViewProvider;
 
 /**

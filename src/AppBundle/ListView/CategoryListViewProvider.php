@@ -10,7 +10,6 @@
 
 namespace AppBundle\ListView;
 
-use Vardius\Bundle\ListBundle\ListView\ListView;
 use Vardius\Bundle\ListBundle\ListView\Provider\ListViewProvider;
 
 /**
@@ -45,7 +44,7 @@ class CategoryListViewProvider extends ListViewProvider
             ->addColumn('updated', 'property', [
                 'sort' => true,
             ])
-            ->addFilter('category_filter', 'provider.category_filter');
+            ->addFilter('category_filter', 'provider.categories_filter');
 
         return $listView;
     }

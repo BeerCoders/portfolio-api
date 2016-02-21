@@ -31,3 +31,11 @@ services:
   icons.list_view:
     class: AppBundle\ListView\IconListViewProvider
     parent: vardius_list.list_view.provider
+
+  categories.list_view:
+    class: AppBundle\ListView\CategoryListViewProvider
+    parent: vardius_list.list_view.provider
+
+  articles.list_view:
+    class: AppBundle\ListView\ArticleListViewProvider
+    parent: vardius_list.list_view.provider

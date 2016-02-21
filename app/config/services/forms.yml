@@ -35,3 +35,13 @@ services:
       tags:
           - { name: form.type, alias: social_media }
 
+  form.type.categories:
+      class: AppBundle\Form\Type\CategoryType
+      tags:
+          - { name: form.type, alias: category }
+
+  form.type.articles:
+      class: AppBundle\Form\Type\ArticleType
+      tags:
+          - { name: form.type, alias: article }
+

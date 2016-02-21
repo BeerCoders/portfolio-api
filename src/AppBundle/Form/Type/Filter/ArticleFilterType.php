@@ -10,6 +10,10 @@
 
 namespace AppBundle\Form\Type\Filter;
 
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
  * Class ArticleFilterType
  * @package AppBundle\Form\Type\Filter

@@ -123,6 +123,13 @@ class CrudLoader extends \Vardius\Bundle\CrudBundle\Routing\CrudLoader implement
             'parameters' => $parameters
         ];
 
+        $action = $controller->getAction($actionKey);
+        $options = $action->getOptions();
+        if (array_key_exists('checkAccess', $options) && array_key_exists('attributes', $options['checkAccess'])) {
+            $config['authentication'] = true;
+            $config['authenticationRoles'] = $options['checkAccess']['attributes'];
+        }
+
         if ($actionKey === 'add' || $actionKey === 'edit') {
             $config['input'] = $input;
         }

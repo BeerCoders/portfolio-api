@@ -1,5 +1,12 @@
 #CONTROLLER
 services:
+  crud_controller.icons:
+    class: "%vardius_crud.controller.class%"
+    factory: ["@vardius_crud.controller.factory", get]
+    arguments: ['AppBundle:Icon', /icons, '@icons.list_view', null, null, null, '@icon.actions_provider']
+    tags:
+        - { name: vardius_crud.controller }
+
   crud_controller.users:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
@@ -45,27 +52,20 @@ services:
   crud_controller.social_medias:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:SocialMedia', /social_medias, '@social_medias.list_view', '@form.type.social_medias', null, null, '@base.actions_provider']
-    tags:
-        - { name: vardius_crud.controller }
-
-  crud_controller.icons:
-    class: "%vardius_crud.controller.class%"
-    factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:Icon', /icons, '@icons.list_view', null, null, null, '@icon.actions_provider']
+    arguments: ['AppBundle:SocialMedia', /social-medias, '@social_medias.list_view', '@form.type.social_medias', null, null, '@base.actions_provider']
     tags:
         - { name: vardius_crud.controller }
 
   crud_controller.categories:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:Category', /categories, '@categories.list_view', null, null, null, '@icon.actions_provider']
+    arguments: ['AppBundle:Category', /categories, '@categories.list_view', '@form.type.categories', null, null, '@base.actions_provider']
     tags:
         - { name: vardius_crud.controller }
 
   crud_controller.articles:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:Article', /articles, '@articles.list_view', null, null, null, '@icon.actions_provider']
+    arguments: ['AppBundle:Article', /articles, '@articles.list_view', '@form.type.articles', null, null, '@base.actions_provider']
     tags:
         - { name: vardius_crud.controller }

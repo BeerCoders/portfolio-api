@@ -136,6 +136,9 @@ class CrudLoader extends \Vardius\Bundle\CrudBundle\Routing\CrudLoader implement
      */
     protected function getFilters($section)
     {
+        $section = preg_replace('~[^\\pL\d]+~u', '_', $section);
+        $section = trim($section, '-');
+
         if (!$this->container->has('provider.' . strtolower($section) . '_filter')) {
             return [];
         }

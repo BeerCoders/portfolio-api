@@ -13,11 +13,11 @@ namespace AppBundle\Action;
 use Vardius\Bundle\CrudBundle\Actions\Provider\ActionsProvider as BaseProvider;
 
 /**
- * Class BaseActionProvider
+ * Class FileActionProvider
  * @package AppBundle\Action
  * @author Rafał Lorenz <vardius@gmail.com>
  */
-class BaseActionProvider extends BaseProvider
+class FileActionProvider extends BaseProvider
 {
     /**
      * Provides actions for controller
@@ -27,7 +27,10 @@ class BaseActionProvider extends BaseProvider
         $this
             ->addAction('list', [
                 'rest_route' => true,
-                'response_type' => 'json'
+                'response_type' => 'json',
+                'checkAccess' => [
+                    'attributes' => ['ROLE_USER']
+                ],
             ])
             ->addAction('add', [
                 'rest_route' => true,

@@ -17,7 +17,7 @@ services:
   crud_controller.files:
     class: "%vardius_crud.controller.class%"
     factory: ["@vardius_crud.controller.factory", get]
-    arguments: ['AppBundle:File', /files, '@files.list_view', '@form.type.files', null, null, '@base.actions_provider']
+    arguments: ['AppBundle:File', /files, '@files.list_view', '@form.type.files', null, null, '@file.actions_provider']
     tags:
         - { name: vardius_crud.controller }
 

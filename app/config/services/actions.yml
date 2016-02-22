@@ -7,3 +7,7 @@ services:
   icon.actions_provider:
     class: AppBundle\Action\IconActionProvider
     parent: vardius_crud.action.provider
+
+  file.actions_provider:
+    class: AppBundle\Action\FileActionProvider
+    parent: vardius_crud.action.provider

@@ -27,7 +27,7 @@
         "friendsofsymfony/rest-bundle": "dev-master",
         "gedmo/doctrine-extensions": "dev-master",
         "vardius/list-bundle": "0.6.0",
-        "vardius/crud-bundle": "0.5.1",
+        "vardius/crud-bundle": "dev-master",
         "jms/serializer-bundle": "^1.0",
         "firebase/php-jwt": "^3.0",
         "nelmio/cors-bundle": "~1.0"

@@ -39,7 +39,6 @@ class UserListViewProvider extends ListViewProvider
             ->addColumn('jobs', 'property')
             ->addColumn('skills', 'property')
             ->addColumn('socialMedias', 'property')
-            ->addColumn('avatar', 'property')
             ->addColumn('enabled', 'property')
             ->addColumn('roles', 'property')
             ->addColumn('created', 'property')

@@ -34,7 +34,6 @@ class UserType extends AbstractType
             ->add('email', 'email', ['required' => false,])
             ->add('surname', 'text', ['required' => false,])
             ->add('username', 'text', ['required' => false,])
-            ->add('avatar', 'url', ['required' => false,])
             ->add('birth', 'date', [
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy',

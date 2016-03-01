@@ -81,14 +81,6 @@ class User extends BaseUser
     protected $description;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank(groups={"Profile"})
-     * @Assert\Url()
-     */
-    protected $avatar;
-
-    /**
      * @var ArrayCollection|Article[]
      * @ORM\OneToMany(targetEntity="Article", mappedBy="author")
      *
@@ -210,24 +202,6 @@ class User extends BaseUser
     public function setBirth($birth)
     {
         $this->birth = $birth;
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
-
-    /**
-     * @param string $avatar
-     * @return User
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
         return $this;
     }
 

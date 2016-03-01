@@ -27,32 +27,57 @@ class BaseActionProvider extends BaseProvider
         $this
             ->addAction('list', [
                 'rest_route' => true,
-                'response_type' => 'json'
+                'defaults' => [
+                    '_format' => 'json'
+                ],
+                'requirements' => [
+                    '_format' => 'json'
+                ],
             ])
             ->addAction('add', [
                 'rest_route' => true,
-                'response_type' => 'json',
                 'checkAccess' => [
                     'attributes' => ['ROLE_USER']
+                ],
+                'defaults' => [
+                    '_format' => 'json'
+                ],
+                'requirements' => [
+                    '_format' => 'json'
                 ],
             ])
             ->addAction('edit', [
                 'rest_route' => true,
-                'response_type' => 'json',
                 'checkAccess' => [
                     'attributes' => ['ROLE_USER']
+                ],
+                'defaults' => [
+                    '_format' => 'json'
+                ],
+                'requirements' => [
+                    '_format' => 'json'
                 ],
             ])
             ->addAction('delete', [
                 'rest_route' => true,
-                'response_type' => 'json',
                 'checkAccess' => [
                     'attributes' => ['ROLE_USER']
+                ],
+                'defaults' => [
+                    '_format' => 'json'
+                ],
+                'requirements' => [
+                    '_format' => 'json'
                 ],
             ])
             ->addAction('show', [
                 'rest_route' => true,
-                'response_type' => 'json'
+                'defaults' => [
+                    '_format' => 'json'
+                ],
+                'requirements' => [
+                    '_format' => 'json'
+                ],
             ]);
 
         return $this->actions;

@@ -27,14 +27,24 @@ class IconActionProvider extends BaseProvider
         $this
             ->addAction('list', [
                 'rest_route' => true,
-                'response_type' => 'json',
+                'defaults' => [
+                    '_format' => 'json'
+                ],
+                'requirements' => [
+                    '_format' => 'json'
+                ],
                 'checkAccess' => [
                     'attributes' => ['ROLE_USER']
                 ],
             ])
             ->addAction('show', [
                 'rest_route' => true,
-                'response_type' => 'json',
+                'defaults' => [
+                    '_format' => 'json'
+                ],
+                'requirements' => [
+                    '_format' => 'json'
+                ],
                 'checkAccess' => [
                     'attributes' => ['ROLE_USER']
                 ],

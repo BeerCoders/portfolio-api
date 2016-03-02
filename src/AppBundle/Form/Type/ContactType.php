@@ -28,7 +28,10 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', 'text', [
-                'constraints' => new Assert\NotBlank(),
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Length(['min' => 3])
+                ],
             ])
             ->add('email', 'email', [
                 'constraints' => [
@@ -40,7 +43,10 @@ class ContactType extends AbstractType
                 'constraints' => new Assert\NotBlank(),
             ])
             ->add('body', 'textarea', [
-                'constraints' => new Assert\NotBlank(),
+                'constraints' => [
+                    new Assert\NotBlank(),
+                    new Assert\Length(['min' => 20])
+                ]
             ]);
     }
 

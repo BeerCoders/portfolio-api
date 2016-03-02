@@ -70,10 +70,11 @@ class ContactController extends Controller
                     'text/plain'
                 );
 
-            $this->get('mailer')->send($message);
+            $recipients = $this->get('mailer')->send($message);
 
             return new JsonResponse([
-                'message' => 'Email sent'
+                'message' => 'Email sent',
+                'recipients' => $recipients
             ]);
         } else {
             $formErrorHandler = $this->get('vardius_crud.form.error_handler');

@@ -44,7 +44,7 @@ class ContactController extends Controller
      */
     public function contactAction(Request $request)
     {
-        $form = $this->createForm(ContactType::class);
+        $form = $this->createForm(new ContactType());
 
         $form->handleRequest($request);
 

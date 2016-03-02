@@ -35,7 +35,7 @@ class ContactController extends Controller
      *  description="Send email tru contact form",
      *  input="AppBundle\Form\Type\ContactType"
      * )
-     * @Route("/contact", name="contact_contact")
+     * @Route("/", name="contact_contact")
      * @Method({"POST"})
      * @Rest\View
      *

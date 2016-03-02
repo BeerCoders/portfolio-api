@@ -59,6 +59,12 @@ class Article
      * @var string
      * @ORM\Column(type="text")
      */
+    protected $intro;
+
+    /**
+     * @var string
+     * @ORM\Column(type="text")
+     */
     protected $body;
 
     /**
@@ -146,6 +152,24 @@ class Article
     public function setTitle($title)
     {
         $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIntro()
+    {
+        return $this->intro;
+    }
+
+    /**
+     * @param string $intro
+     * @return Article
+     */
+    public function setIntro($intro)
+    {
+        $this->intro = $intro;
         return $this;
     }
 

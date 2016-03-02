@@ -28,7 +28,8 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title', 'text')
-            ->add('body', 'text')
+            ->add('intro', 'text')
+            ->add('body', 'textarea')
             ->add('cover', 'url')
             ->add('author', 'entity', [
                 'class' => 'AppBundle\Entity\User',

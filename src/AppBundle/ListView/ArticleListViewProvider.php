@@ -44,10 +44,7 @@ class ArticleListViewProvider extends ListViewProvider
             ->addColumn('title', 'property', [
                 'sort' => true,
             ])
-            ->addColumn('introduction', 'property', [
-                'sort' => false,
-            ])
-            ->addColumn('body', 'property', [
+            ->addColumn('intro', 'property', [
                 'sort' => false,
             ])
             ->addColumn('created', 'property', [

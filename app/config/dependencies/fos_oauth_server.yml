@@ -8,4 +8,4 @@ fos_oauth_server:
   service:
     user_provider: fos_user.user_manager
     options:
-      supported_scopes: user admin super_admin
+      supported_scopes: user

@@ -21,3 +21,8 @@ parameters:
     locale: en
     domain: ~
     dashboard_domain: ~
+
+    recipients:
+      - 'email1@test.pl'
+      - 'email2@test.pl'
+      - 'email3@test.pl'

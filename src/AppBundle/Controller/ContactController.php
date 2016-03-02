@@ -54,7 +54,7 @@ class ContactController extends Controller
             $message = \Swift_Message::newInstance()
                 ->setSubject('Contact from BeerCoders')
                 ->setFrom([$data['email'] => $data['name']])
-                ->setTo('recipient@example.com')
+                ->setTo($this->getParameter('recipients'))
                 ->setBody(
                     $this->renderView(
                         'Email/contact.html.twig',

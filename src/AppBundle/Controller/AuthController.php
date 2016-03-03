@@ -22,18 +22,41 @@ use Symfony\Component\HttpFoundation\Request;
  * Class AuthController
  * @package AppBundle\Controller
  * @author Rafał Lorenz <vardius@gmail.com>
- *
- * @Route("/oauth/v2")
  */
 class AuthController extends Controller
 {
+    /**
+     * @ApiDoc(
+     *  section="Users",
+     *  resource=false,
+     *  description="Get current user"
+     * )
+     * @Route("/users/me", name="users_current")
+     * @Method({"GET"})
+     * @return JsonResponse
+     * @Rest\View
+     */
+    public function meAction()
+    {
+        $user = $this->getUser();
+        if ($user) {
+            $responseHandler = $this->get('vardius_crud.response.handler');
+
+            return $responseHandler->getResponse('json', null, null, $user, 200, [], ['Default', 'show']);
+        }
+
+        return new JsonResponse(array(
+            'message' => 'User is not identified'
+        ));
+    }
+
     /**
      * @ApiDoc(
      *  section="Authorization",
      *  resource=false,
      *  description="Revoke token"
      * )
-     * @Route("/revoke", name="oauth_token_revoke")
+     * @Route("/oauth/v2/revoke", name="oauth_token_revoke")
      * @Method({"GET|POST"})
      * @return JsonResponse
      * @Rest\View
@@ -60,3 +83,4 @@ class AuthController extends Controller
         ));
     }
 }
+

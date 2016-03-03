@@ -40,9 +40,13 @@ class AuthController extends Controller
     {
         $user = $this->getUser();
         if ($user) {
+            $params = [
+                'data' => $user
+            ];
+
             $responseHandler = $this->get('vardius_crud.response.handler');
 
-            return $responseHandler->getResponse('json', null, null, $user, 200, [], ['Default', 'show']);
+            return $responseHandler->getResponse('json', null, null, $params, 200, [], ['Default', 'show']);
         }
 
         return new JsonResponse(array(

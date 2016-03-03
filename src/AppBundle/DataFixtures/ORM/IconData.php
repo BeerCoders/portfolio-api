@@ -28,6 +28,10 @@ class IconData implements FixtureInterface
     {
         $icons = [
             [
+                'name' => 'stackoverflow',
+                'class' => 'fa-stack-overflow',
+            ],
+            [
                 'name' => 'linkedin',
                 'class' => 'fa-linkedin',
             ],

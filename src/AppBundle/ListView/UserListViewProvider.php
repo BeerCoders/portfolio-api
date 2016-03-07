@@ -28,21 +28,10 @@ class UserListViewProvider extends ListViewProvider
 
         $listView
             ->addColumn('id', 'property')
-            ->addColumn('username', 'property')
             ->addColumn('email', 'property')
             ->addColumn('name', 'property')
             ->addColumn('surname', 'property')
             ->addColumn('title', 'property')
-            ->addColumn('birth', 'property')
-            ->addColumn('location', 'property')
-            ->addColumn('description', 'property')
-            ->addColumn('jobs', 'property')
-            ->addColumn('skills', 'property')
-            ->addColumn('socialMedias', 'property')
-            ->addColumn('enabled', 'property')
-            ->addColumn('roles', 'property')
-            ->addColumn('created', 'property')
-            ->addColumn('updated', 'property')
             ->addFilter('user_filter', 'provider.users_filter');
 
         return $listView;

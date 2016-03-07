@@ -25,6 +25,7 @@ class ArticleListViewProvider extends ListViewProvider
     public function buildListView()
     {
         $listView = $this->listViewFactory->get();
+
         $listView
             ->addColumn('id', 'property')
             ->addColumn('title', 'property')

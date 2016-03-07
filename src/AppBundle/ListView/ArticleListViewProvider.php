@@ -32,6 +32,8 @@ class ArticleListViewProvider extends ListViewProvider
             ->addColumn('intro', 'property')
             ->addColumn('tags', 'property')
             ->addColumn('category', 'property')
+            ->addColumn('created', 'property')
+            ->addColumn('updated', 'property')
             ->addFilter('article_filter', 'provider.articles_filter');
 
         return $listView;

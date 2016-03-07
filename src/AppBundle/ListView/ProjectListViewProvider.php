@@ -29,9 +29,7 @@ class ProjectListViewProvider extends ListViewProvider
         $listView
             ->addColumn('id', 'property')
             ->addColumn('logo', 'property')
-            ->addColumn('description', 'property')
-            ->addColumn('created', 'property')
-            ->addColumn('updated', 'property');
+            ->addColumn('description', 'property');
 
         return $listView;
     }

@@ -26,33 +26,12 @@ class ArticleListViewProvider extends ListViewProvider
     {
         $listView = $this->listViewFactory->get();
         $listView
-            ->addColumn('id', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('author', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('tags', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('category', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('cover', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('title', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('intro', 'property', [
-                'sort' => false,
-            ])
-            ->addColumn('created', 'property', [
-                'sort' => true,
-            ])
-            ->addColumn('updated', 'property', [
-                'sort' => true,
-            ])
+            ->addColumn('id', 'property')
+            ->addColumn('title', 'property')
+            ->addColumn('author', 'property')
+            ->addColumn('intro', 'property')
+            ->addColumn('tags', 'property')
+            ->addColumn('category', 'property')
             ->addFilter('article_filter', 'provider.articles_filter');
 
         return $listView;

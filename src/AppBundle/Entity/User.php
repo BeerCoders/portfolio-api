@@ -24,6 +24,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *
  * @ORM\Entity
  * @ORM\Table(name="users")
+ *
+ * @Serializer\ExclusionPolicy("all")
  */
 class User extends BaseUser
 {
@@ -31,15 +33,20 @@ class User extends BaseUser
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Serializer\Expose()
      */
     protected $id;
 
+    /**
+     * @Serializer\Expose()
+     */
     protected $roles;
 
     /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank(groups={"Profile"})
+     * @Serializer\Expose()
      */
     protected $name;
 
@@ -47,6 +54,7 @@ class User extends BaseUser
      * @var string
      * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank(groups={"Profile"})
+     * @Serializer\Expose()
      */
     protected $surname;
 
@@ -54,6 +62,7 @@ class User extends BaseUser
      * @var string
      * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank(groups={"Profile"})
+     * @Serializer\Expose()
      */
     protected $title;
 
@@ -63,6 +72,7 @@ class User extends BaseUser
      * @ORM\Column(type="datetime", nullable=true)
      * @Assert\DateTime()
      * @Assert\NotBlank(groups={"Registration", "Profile"})
+     * @Serializer\Expose()
      */
     protected $birth;
 
@@ -70,6 +80,7 @@ class User extends BaseUser
      * @var string
      * @ORM\Column(type="string", nullable=true)
      * @Assert\NotBlank(groups={"Profile"})
+     * @Serializer\Expose()
      */
     protected $location;
 
@@ -77,6 +88,7 @@ class User extends BaseUser
      * @var string
      * @ORM\Column(type="text", nullable=true)
      * @Assert\NotBlank(groups={"Profile"})
+     * @Serializer\Expose()
      */
     protected $description;
 
@@ -85,18 +97,21 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Article", mappedBy="author")
      *
      * @Serializer\MaxDepth(2)
+     * @Serializer\Expose()
      */
     protected $articles;
 
     /**
      * @var ArrayCollection|Job[]
      * @ORM\OneToMany(targetEntity="Job", mappedBy="user", cascade={"remove"})
+     * @Serializer\Expose()
      */
     protected $jobs;
 
     /**
      * @var ArrayCollection|Skill[]
      * @ORM\OneToMany(targetEntity="Skill", mappedBy="user", cascade={"remove"})
+     * @Serializer\Expose()
      */
     protected $skills;
 
@@ -104,6 +119,7 @@ class User extends BaseUser
      * @var ArrayCollection|SocialMedia[]
      *
      * @ORM\OneToMany(targetEntity="SocialMedia", mappedBy="user", cascade={"remove"})
+     * @Serializer\Expose()
      */
     protected $socialMedias;
 
@@ -112,6 +128,7 @@ class User extends BaseUser
      *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime")
+     * @Serializer\Expose()
      */
     protected $created;
 
@@ -120,6 +137,7 @@ class User extends BaseUser
      *
      * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime")
+     * @Serializer\Expose()
      */
     protected $updated;
 

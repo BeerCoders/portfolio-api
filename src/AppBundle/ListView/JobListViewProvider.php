@@ -34,7 +34,6 @@ class JobListViewProvider extends ListViewProvider
             ->addColumn('dateFrom', 'property')
             ->addColumn('dateTo', 'property')
             ->addColumn('currentJob', 'property')
-            ->addColumn('user', 'property')
             ->addColumn('created', 'property')
             ->addColumn('updated', 'property')
             ->addFilter('job_filter', 'provider.jobs_filter');

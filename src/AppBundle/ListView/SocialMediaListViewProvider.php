@@ -31,7 +31,6 @@ class SocialMediaListViewProvider extends ListViewProvider
             ->addColumn('name', 'property')
             ->addColumn('icon', 'property')
             ->addColumn('url', 'property')
-            ->addColumn('user', 'property')
             ->addColumn('created', 'property')
             ->addColumn('updated', 'property')
             ->addFilter('social_media_filter', 'provider.social_medias_filter');

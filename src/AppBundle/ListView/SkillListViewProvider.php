@@ -29,7 +29,7 @@ class SkillListViewProvider extends ListViewProvider
         $listView
             ->addColumn('id', 'property')
             ->addColumn('name', 'property')
-            ->addColumn('user', 'property')
+            ->addColumn('value', 'property')
             ->addColumn('created', 'property')
             ->addColumn('updated', 'property')
             ->addFilter('skill_filter', 'provider.skills_filter');

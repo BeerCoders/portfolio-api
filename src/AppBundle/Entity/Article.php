@@ -70,6 +70,7 @@ class Article
     /**
      * @var User
      * @ORM\ManyToOne(targetEntity="User", inversedBy="articles")
+     * @ORM\JoinColumn(name="user", referencedColumnName="id")
      * @Serializer\MaxDepth(1)
      */
     protected $author;

@@ -14,6 +14,8 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Vardius\Bundle\CrudBundle\Event\CrudEvent;
 use Vardius\Bundle\CrudBundle\Event\CrudEvents;
+use Vardius\Bundle\ListBundle\Event\ListEvent;
+use Vardius\Bundle\ListBundle\Event\ListEvents;
 
 /**
  * Lorenz\MainBundle\EventListener\AccessSubscriber
@@ -45,6 +47,8 @@ class CrudSubscriber implements EventSubscriberInterface
             CrudEvents::CRUD_PRE_CREATE => 'preCreate',
             CrudEvents::CRUD_PRE_UPDATE => 'checkAccess',
             CrudEvents::CRUD_PRE_DELETE => 'checkAccess',
+            CrudEvents::CRUD_SHOW => 'checkAccess',
+            ListEvents::POST_QUERY_BUILDER => 'filterList',
         );
     }
 
@@ -84,5 +88,17 @@ class CrudSubscriber implements EventSubscriberInterface
         if (method_exists($data, 'setAuthor')) {
             $data->setAuthor($this->user);
         }
+    }
+
+    public function filterList(ListEvent $event)
+    {
+        $queryBuilder = $event->getQueryBuilder();
+
+        $aliases = $queryBuilder->getRootAliases();
+        $alias = array_values($aliases)[0];
+
+        $queryBuilder
+            ->andWhere($alias . '.user = :user')
+            ->setParameter('user', $this->user);
     }
 }

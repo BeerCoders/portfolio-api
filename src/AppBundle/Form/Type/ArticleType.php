@@ -30,7 +30,9 @@ class ArticleType extends AbstractType
             ->add('title', 'text')
             ->add('intro', 'text')
             ->add('body', 'textarea')
-            ->add('cover', 'url');
+            ->add('cover', 'url', [
+                'required' => false
+            ]);
     }
 
     /**

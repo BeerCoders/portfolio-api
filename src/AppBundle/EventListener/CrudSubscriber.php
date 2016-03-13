@@ -92,6 +92,16 @@ class CrudSubscriber implements EventSubscriberInterface
 
     public function filterList(ListEvent $event)
     {
+        $route = $event->getRouteName();
+        $nonRestrictedRoutes = [
+            'crud_controller.articles.list',
+            'crud_controller.projects.list'
+        ];
+
+        if (in_array($route, $nonRestrictedRoutes)) {
+            return;
+        }
+
         $queryBuilder = $event->getQueryBuilder();
 
         $aliases = $queryBuilder->getRootAliases();

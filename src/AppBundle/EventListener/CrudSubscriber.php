@@ -98,7 +98,7 @@ class CrudSubscriber implements EventSubscriberInterface
             'crud_controller.projects.list'
         ];
 
-        if (in_array($route, $nonRestrictedRoutes)) {
+        if (in_array($route, $nonRestrictedRoutes) || !$this->user instanceof User) {
             return;
         }
 

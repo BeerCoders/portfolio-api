@@ -64,6 +64,9 @@ class CrudSubscriber implements EventSubscriberInterface
         } elseif (method_exists($data, 'getUser') && $this->user !== $data->getUser()) {
 
             throw new AccessDeniedException();
+        } elseif (method_exists($data, 'getAuthor') && $this->user !== $data->getAuthor()) {
+
+            throw new AccessDeniedException();
         }
     }
 
@@ -76,6 +79,10 @@ class CrudSubscriber implements EventSubscriberInterface
 
         if (method_exists($data, 'setUser')) {
             $data->setUser($this->user);
+        }
+
+        if (method_exists($data, 'setAuthor')) {
+            $data->setAuthor($this->user);
         }
     }
 }

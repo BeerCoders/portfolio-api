@@ -30,11 +30,7 @@ class ArticleType extends AbstractType
             ->add('title', 'text')
             ->add('intro', 'text')
             ->add('body', 'textarea')
-            ->add('cover', 'url')
-            ->add('author', 'entity', [
-                'class' => 'AppBundle\Entity\User',
-                'property' => 'id',
-            ]);
+            ->add('cover', 'url');
     }
 
     /**

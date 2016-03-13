@@ -20,7 +20,3 @@ services:
       arguments: ["@security.token_storage"]
       tags:
           - { name: kernel.event_subscriber }
-
-    app.elasticsearch.finder:
-      class: AppBundle\Elasticsearch\Finder
-      arguments: ["@service_container"]

@@ -17,7 +17,7 @@ services:
 
     app.crud_subscriber:
       class: AppBundle\EventListener\CrudSubscriber
-      arguments: ["security.token_storage"]
+      arguments: ["@security.token_storage"]
       tags:
           - { name: kernel.event_subscriber }
 

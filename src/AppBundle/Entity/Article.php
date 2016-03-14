@@ -38,7 +38,6 @@ class Article
     /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank)
      * @Assert\Url()
      */
     protected $cover;

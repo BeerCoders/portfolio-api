@@ -62,15 +62,15 @@ class CrudSubscriber implements EventSubscriberInterface
         if ($data instanceof User) {
             if ($data !== $this->user) {
 
-                throw new AccessDeniedException();
+                throw new AccessDeniedException($this->user->getFullName() . ' is not allowed to update ' . $data->getFullName());
             }
 
         } elseif (method_exists($data, 'getUser') && $this->user !== $data->getUser()) {
 
-            throw new AccessDeniedException();
+            throw new AccessDeniedException($this->user->getFullName() . ' is not allowed to update ' . $data->getFullName() . '\'s data');
         } elseif (method_exists($data, 'getAuthor') && $this->user !== $data->getAuthor()) {
 
-            throw new AccessDeniedException();
+            throw new AccessDeniedException($this->user->getFullName() . ' is not allowed to update ' . $data->getFullName() . '\'s data');
         }
     }
 

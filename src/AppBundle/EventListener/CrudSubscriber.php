@@ -54,6 +54,10 @@ class CrudSubscriber implements EventSubscriberInterface
 
     public function checkAccess(CrudEvent $event)
     {
+        if (!$this->user instanceof User) {
+            return;
+        }
+
         $data = $event->getData();
         if ($data instanceof FormInterface) {
             $data = $data->getData();

@@ -80,6 +80,10 @@ class CrudSubscriber implements EventSubscriberInterface
 
     public function preCreate(CrudEvent $event)
     {
+        if (!$this->user instanceof User) {
+            throw new AccessDeniedException('Token has no user');
+        }
+
         $data = $event->getData();
         if ($data instanceof FormInterface) {
             $data = $data->getData();

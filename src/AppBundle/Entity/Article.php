@@ -36,7 +36,7 @@ class Article
     protected $id;
 
     /**
-     * @Gedmo\Slug(fields={"category", "title"}, style="lower", separator="-",)
+     * @Gedmo\Slug(fields={"title"}, style="lower", separator="-",)
      * @ORM\Column(length=128, unique=true)
      */
     private $slug;

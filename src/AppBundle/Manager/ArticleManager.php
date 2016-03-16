@@ -41,6 +41,14 @@ class ArticleManager implements CrudManagerInterface
             $repository = $this->entityManager->getRepository('AppBundle:Article');
             $query = $repository->createQueryBuilder('a');
 
+            if (is_numeric($id)) {
+                return $query
+                    ->andWhere('a.id = :id')
+                    ->setParameter('id', (int)$id)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+            }
+
             return $query
                 ->andWhere('a.slug = :slug')
                 ->setParameter('slug', $id)

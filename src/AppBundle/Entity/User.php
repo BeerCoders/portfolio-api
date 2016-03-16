@@ -104,6 +104,7 @@ class User extends BaseUser
     /**
      * @var ArrayCollection|Job[]
      * @ORM\OneToMany(targetEntity="Job", mappedBy="user", cascade={"remove"})
+     * @ORM\OrderBy({"dateFrom" = "DESC"})
      * @Serializer\Expose()
      */
     protected $jobs;
@@ -111,6 +112,7 @@ class User extends BaseUser
     /**
      * @var ArrayCollection|Skill[]
      * @ORM\OneToMany(targetEntity="Skill", mappedBy="user", cascade={"remove"})
+     * @ORM\OrderBy({"value" = "DESC"})
      * @Serializer\Expose()
      */
     protected $skills;

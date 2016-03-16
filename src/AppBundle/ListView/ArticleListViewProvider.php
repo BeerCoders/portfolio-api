@@ -28,6 +28,7 @@ class ArticleListViewProvider extends ListViewProvider
 
         $listView
             ->addColumn('id', 'property')
+            ->addColumn('slug', 'property')
             ->addColumn('title', 'property')
             ->addColumn('author', 'property')
             ->addColumn('intro', 'property')

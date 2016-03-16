@@ -20,3 +20,7 @@ services:
       arguments: ["@security.token_storage"]
       tags:
           - { name: kernel.event_subscriber }
+
+    app.article_manager:
+      class: AppBundle\Manager\ArticleManager
+      arguments: ["@doctrine.orm.entity_manager"]

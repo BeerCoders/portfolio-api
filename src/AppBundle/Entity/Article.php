@@ -36,6 +36,12 @@ class Article
     protected $id;
 
     /**
+     * @Gedmo\Slug(fields={"category", "title"}, style="lower", separator="-",)
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+
+    /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
      * @Assert\Url()
@@ -117,6 +123,14 @@ class Article
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

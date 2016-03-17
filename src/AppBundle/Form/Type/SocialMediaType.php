@@ -30,7 +30,7 @@ class SocialMediaType extends AbstractType
             ->add('name', 'text')
             ->add('icon', 'entity', [
                 'class' => 'AppBundle\Entity\Icon',
-                'property' => 'name',
+                'property' => 'id',
             ])
             ->add('url', 'url');
     }

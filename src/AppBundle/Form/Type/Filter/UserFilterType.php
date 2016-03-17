@@ -34,10 +34,16 @@ class UserFilterType extends AbstractType
             ->add('username', 'text', [
                 'required' => false
             ])
+            ->add('title', 'text', [
+                'required' => false
+            ])
             ->add('name', 'text', [
                 'required' => false
             ])
             ->add('surname', 'text', [
+                'required' => false
+            ])
+            ->add('location', 'text', [
                 'required' => false
             ])
             ->add('roles', 'text', [

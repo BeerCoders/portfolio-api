@@ -51,9 +51,11 @@ class ContactController extends Controller
         if ($form->isValid()) {
             $data = $form->getData();
 
+
             $message = \Swift_Message::newInstance()
                 ->setSubject('Contact from BeerCoders')
                 ->setFrom([$data['email'] => $data['name']])
+                ->addReplyTo($data['email'], $data['name'])
                 ->setTo($this->getParameter('recipients'))
                 ->setBody(
                     $this->renderView(

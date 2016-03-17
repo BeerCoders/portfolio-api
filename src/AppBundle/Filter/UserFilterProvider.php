@@ -29,6 +29,8 @@ class UserFilterProvider extends FilterProvider
             ->addFilter('username', 'text')
             ->addFilter('name', 'text')
             ->addFilter('surname', 'text')
+            ->addFilter('title', 'text')
+            ->addFilter('location', 'text')
             ->addFilter('roles', 'text')
             ->addFilter('enabled', 'text')
         ;

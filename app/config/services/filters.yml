@@ -31,7 +31,13 @@ services:
   provider.skills_filter:
       class: AppBundle\Filter\SkillFilterProvider
       parent: vardius_list.filter.provider
-
+  form.type.project_skills_filter:
+        class: AppBundle\Form\Type\Filter\ProjectSkillFilterType
+        tags:
+            - { name: form.type, alias: project_skill_filter }
+  provider.project_skills_filter:
+        class: AppBundle\Filter\ProjectSkillFilterProvider
+        parent: vardius_list.filter.provider
   form.type.jobs_filter:
       class: AppBundle\Form\Type\Filter\JobFilterType
       tags:

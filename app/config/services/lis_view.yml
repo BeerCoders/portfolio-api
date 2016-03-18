@@ -20,6 +20,10 @@ services:
     class: AppBundle\ListView\SkillListViewProvider
     parent: vardius_list.list_view.provider
 
+  project_skills.list_view:
+      class: AppBundle\ListView\ProjectSkillListViewProvider
+      parent: vardius_list.list_view.provider
+
   jobs.list_view:
     class: AppBundle\ListView\JobListViewProvider
     parent: vardius_list.list_view.provider

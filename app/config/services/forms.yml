@@ -20,6 +20,11 @@ services:
       tags:
           - { name: form.type, alias: skill }
 
+  form.type.project_skills:
+        class: AppBundle\Form\Type\ProjectSkillType
+        tags:
+            - { name: form.type, alias: skill }
+
   form.type.jobs:
       class: AppBundle\Form\Type\JobType
       tags:

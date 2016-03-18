@@ -32,7 +32,7 @@ class ProjectSkillListViewProvider extends ListViewProvider
             ->addColumn('value', 'property')
             ->addColumn('created', 'property')
             ->addColumn('updated', 'property')
-            ->addFilter('project_skill_filter', 'provider.project_skill_filter');
+            ->addFilter('project_skill_filter', 'provider.project_skills_filter');
 
         return $listView;
     }

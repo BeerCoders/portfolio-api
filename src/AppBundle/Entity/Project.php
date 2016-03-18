@@ -49,6 +49,14 @@ class Project
     protected $logo;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank(groups={"Profile"})
+     * @Assert\Url()
+     */
+    protected $flayer;
+
+    /**
      * @var \DateTime $created
      *
      * @Gedmo\Timestampable(on="create")
@@ -141,6 +149,24 @@ class Project
     public function setUpdated($updated)
     {
         $this->updated = $updated;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFlayer()
+    {
+        return $this->flayer;
+    }
+
+    /**
+     * @param string $flayer
+     * @return $this
+     */
+    public function setFlayer($flayer)
+    {
+        $this->flayer = $flayer;
         return $this;
     }
 

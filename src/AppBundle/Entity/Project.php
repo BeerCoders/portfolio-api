@@ -10,6 +10,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -57,6 +58,14 @@ class Project
     protected $flayer;
 
     /**
+     * @var ArrayCollection|ProjectSkill[]
+     * @ORM\OneToMany(targetEntity="ProjectSkill", mappedBy="project", cascade={"remove"})
+     * @ORM\OrderBy({"value" = "DESC"})
+     * @Serializer\Expose()
+     */
+    protected $skills;
+
+    /**
      * @var \DateTime $created
      *
      * @Gedmo\Timestampable(on="create")
@@ -71,6 +80,11 @@ class Project
      * @ORM\Column(type="datetime")
      */
     protected $updated;
+
+    public function __construct()
+    {
+        $this->skills = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -167,6 +181,38 @@ class Project
     public function setFlayer($flayer)
     {
         $this->flayer = $flayer;
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|Skill[]
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    /**
+     * @param ProjectSkill $skill
+     * @return $this
+     */
+    public function addSkill(ProjectSkill $skill)
+    {
+        if (!$this->skills->contains($skill)) {
+            $this->skills->add($skill);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param ProjectSkill $skill
+     * @return $this
+     */
+    public function removeSkill(ProjectSkill $skill)
+    {
+        $this->skills->removeElement($skill);
+
         return $this;
     }
 

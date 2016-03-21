@@ -30,6 +30,10 @@ class SkillFilterType extends AbstractType
             ->add('name', 'text', [
                 'required' => false
             ])
+            ->add('tech', 'entity', [
+                'class' => 'AppBundle\Entity\Tech',
+                'property' => 'id',
+            ])
             ->setMethod('GET');
     }
 

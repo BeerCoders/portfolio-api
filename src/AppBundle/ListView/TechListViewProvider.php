@@ -13,11 +13,11 @@ namespace AppBundle\ListView;
 use Vardius\Bundle\ListBundle\ListView\Provider\ListViewProvider;
 
 /**
- * Class SkillListViewProvider
+ * Class TechListViewProvider
  * @package AppBundle\ListView
  * @author Rafał Lorenz <vardius@gmail.com>
  */
-class SkillListViewProvider extends ListViewProvider
+class TechListViewProvider extends ListViewProvider
 {
     /**
      * @inheritDoc
@@ -29,10 +29,9 @@ class SkillListViewProvider extends ListViewProvider
         $listView
             ->addColumn('id', 'property')
             ->addColumn('name', 'property')
-            ->addColumn('tech', 'property')
             ->addColumn('created', 'property')
             ->addColumn('updated', 'property')
-            ->addFilter('skill_filter', 'provider.skills_filter');
+            ->addFilter('tech_filter', 'provider.techs_filter');
 
         return $listView;
     }

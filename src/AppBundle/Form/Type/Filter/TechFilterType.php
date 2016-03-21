@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the rest-api package.
+ * This file is part of the portfolio-api package.
  *
  * (c) Rafał Lorenz <vardius@gmail.com>
  *
@@ -8,29 +8,34 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Form\Type;
+namespace AppBundle\Form\Type\Filter;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Lorenz\MainBundle\Form\Type\ProjectType
- *
+ * Class TechFilterType
+ * @package AppBundle\Form\Type
  * @author Rafał Lorenz <vardius@gmail.com>
  */
-class ProjectType extends AbstractType
+class TechFilterType extends AbstractType
 {
+    /**
+     * @inheritDoc
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('logo', 'url')
-            ->add('description', 'text')
-            ->add('technologies', 'entity', [
+            ->add('name', 'text', [
+                'required' => false
+            ])
+            ->add('projects', 'entity', [
                 'class' => 'AppBundle\Entity\Tech',
                 'property' => 'id',
                 'multiple' => true,
-            ]);
+            ])
+            ->setMethod('GET');
     }
 
     /**
@@ -39,14 +44,17 @@ class ProjectType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\Project',
-            'validation_group' => ['update']
+            'data_class' => 'AppBundle\Entity\Tech',
+            'validation_group' => ['filter'],
         ]);
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getName()
     {
-        return 'project';
+        return 'tech_filter';
     }
 
 }

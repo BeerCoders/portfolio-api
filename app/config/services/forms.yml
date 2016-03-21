@@ -45,3 +45,8 @@ services:
       tags:
           - { name: form.type, alias: article }
 
+  form.type.techs:
+      class: AppBundle\Form\Type\TechType
+      tags:
+          - { name: form.type, alias: tech }
+

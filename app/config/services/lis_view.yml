@@ -39,3 +39,7 @@ services:
   articles.list_view:
     class: AppBundle\ListView\ArticleListViewProvider
     parent: vardius_list.list_view.provider
+
+  techs.list_view:
+    class: AppBundle\ListView\TechListViewProvider
+    parent: vardius_list.list_view.provider

@@ -253,7 +253,7 @@ class Article
      * @param Tag $tag
      * @return Article
      */
-    public function addArticle(Tag $tag)
+    public function addTag(Tag $tag)
     {
         if (!$this->tags->contains($tag)) {
             $this->tags->add($tag);
@@ -265,7 +265,7 @@ class Article
      * @param Tag $tag
      * @return Article
      */
-    public function removeArticle(Tag $tag)
+    public function removeTag(Tag $tag)
     {
         $this->tags->removeElement($tag);
 

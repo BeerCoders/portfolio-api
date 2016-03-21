@@ -33,13 +33,6 @@ class Skill
     protected $id;
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
-     */
-    protected $name;
-
-    /**
      * @ORM\Column(type="integer")
      * @Assert\Range(
      *      min = 1,
@@ -48,6 +41,13 @@ class Skill
      * @Assert\NotBlank()
      */
     protected $value;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tech")
+     * @ORM\JoinColumn(name="tech_id", referencedColumnName="id")
+     * @Assert\NotBlank()
+     */
+    protected $tech;
 
     /**
      * @ORM\ManyToOne(targetEntity="User", inversedBy="skills")
@@ -80,24 +80,6 @@ class Skill
     }
 
     /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param string $name
-     * @return Skill
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-        return $this;
-    }
-
-    /**
      * @return mixed
      */
     public function getValue()
@@ -112,6 +94,24 @@ class Skill
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTech()
+    {
+        return $this->tech;
+    }
+
+    /**
+     * @param mixed $tech
+     * @return Skill
+     */
+    public function setTech($tech)
+    {
+        $this->tech = $tech;
         return $this;
     }
 

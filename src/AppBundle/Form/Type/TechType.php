@@ -14,23 +14,13 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-/**
- * Lorenz\MainBundle\Form\Type\ProjectType
- *
- * @author Rafał Lorenz <vardius@gmail.com>
- */
-class ProjectType extends AbstractType
+class TechType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('logo', 'url')
-            ->add('description', 'text')
-            ->add('technologies', 'entity', [
-                'class' => 'AppBundle\Entity\Tech',
-                'property' => 'id',
-                'multiple' => true,
-            ]);
+            ->add('name', 'text')
+            ->add('logo', 'url');
     }
 
     /**
@@ -39,14 +29,14 @@ class ProjectType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\Project',
+            'data_class' => 'AppBundle\Entity\Tech',
             'validation_group' => ['update']
         ]);
     }
 
     public function getName()
     {
-        return 'project';
+        return 'tech';
     }
 
 }

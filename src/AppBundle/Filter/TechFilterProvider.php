@@ -13,11 +13,11 @@ namespace AppBundle\Filter;
 use Vardius\Bundle\ListBundle\Filter\Provider\FilterProvider;
 
 /**
- * Class SkillFilterProvider
+ * Class TechFilterProvider
  * @package AppBundle\Filter
  * @author Rafał Lorenz <vardius@gmail.com>
  */
-class SkillFilterProvider extends FilterProvider
+class TechFilterProvider extends FilterProvider
 {
     /**
      * @inheritDoc
@@ -26,7 +26,9 @@ class SkillFilterProvider extends FilterProvider
     {
         $this
             ->addFilter('name', 'text')
-            ->addFilter('tech', 'entity');
+            ->addFilter('projects', 'entity', [
+                'multiple' => true
+            ]);
     }
 
 }

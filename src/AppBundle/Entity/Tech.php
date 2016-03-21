@@ -17,14 +17,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Class Project
+ * Class Tech
  * @package AppBundle\Entity
  * @author Rafał Lorenz <vardius@gmail.com>
  *
  * @ORM\Entity
- * @ORM\Table(name="projects")
+ * @ORM\Table(name="technologies")
  */
-class Project
+class Tech
 {
     /**
      * @ORM\Id
@@ -35,28 +35,26 @@ class Project
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
-    protected $description;
+    protected $name;
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank(groups={"Profile"})
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
      * @Assert\Url()
      */
     protected $logo;
 
     /**
-     * @var ArrayCollection|Tech[]
-     * @ORM\ManyToMany(targetEntity="Tech", inversedBy="projects")
-     * @ORM\JoinTable(name="projects_tech")
+     * @var ArrayCollection|Project[]
+     * @ORM\ManyToMany(targetEntity="Project", mappedBy="technologies")
      *
      * @Serializer\MaxDepth(2)
      */
-    protected $technologies;
+    protected $projects;
 
     /**
      * @var \DateTime $created
@@ -76,7 +74,7 @@ class Project
 
     public function __construct()
     {
-        $this->technologies = new ArrayCollection();
+        $this->projects = new ArrayCollection();
     }
 
     /**
@@ -90,18 +88,18 @@ class Project
     /**
      * @return string
      */
-    public function getDescription()
+    public function getName()
     {
-        return $this->description;
+        return $this->name;
     }
 
     /**
-     * @param string $description
-     * @return Project
+     * @param string $name
+     * @return Tech
      */
-    public function setDescription($description)
+    public function setName($name)
     {
-        $this->description = $description;
+        $this->name = $name;
         return $this;
     }
 
@@ -115,7 +113,7 @@ class Project
 
     /**
      * @param string $logo
-     * @return Project
+     * @return Tech
      */
     public function setLogo($logo)
     {
@@ -124,32 +122,32 @@ class Project
     }
 
     /**
-     * @return Tech[]|ArrayCollection
+     * @return ArrayCollection|Project[]
      */
-    public function getTechnologies()
+    public function getProjects()
     {
-        return $this->technologies;
+        return $this->projects;
     }
 
     /**
-     * @param Tech $tech
-     * @return Project
+     * @param Project $project
+     * @return Tech
      */
-    public function addTechnology(Tech $tech)
+    public function addProject(Project $project)
     {
-        if (!$this->technologies->contains($tech)) {
-            $this->technologies->add($tech);
+        if (!$this->projects->contains($project)) {
+            $this->projects->add($project);
         }
         return $this;
     }
 
     /**
-     * @param Tech $tech
-     * @return Project
+     * @param Project $project
+     * @return Tech
      */
-    public function removeTechnology(Tech $tech)
+    public function removeProject(Project $project)
     {
-        $this->technologies->removeElement($tech);
+        $this->projects->removeElement($project);
 
         return $this;
     }
@@ -164,7 +162,7 @@ class Project
 
     /**
      * @param \DateTime $created
-     * @return Project
+     * @return Tech
      */
     public function setCreated($created)
     {
@@ -182,12 +180,11 @@ class Project
 
     /**
      * @param \DateTime $updated
-     * @return Project
+     * @return Tech
      */
     public function setUpdated($updated)
     {
         $this->updated = $updated;
         return $this;
     }
-
 }

@@ -71,3 +71,11 @@ services:
   provider.articles_filter:
       class: AppBundle\Filter\ArticleFilterProvider
       parent: vardius_list.filter.provider
+
+  form.type.techs_filter:
+      class: AppBundle\Form\Type\Filter\TechFilterType
+      tags:
+          - { name: form.type, alias: tech_filter }
+  provider.techs_filter:
+      class: AppBundle\Filter\TechFilterProvider
+      parent: vardius_list.filter.provider

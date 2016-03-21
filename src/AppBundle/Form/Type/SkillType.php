@@ -19,7 +19,10 @@ class SkillType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
+            ->add('tech', 'entity', [
+                'class' => 'AppBundle\Entity\Tech',
+                'property' => 'id',
+            ])
             ->add('value', 'number');
     }
 

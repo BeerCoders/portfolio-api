@@ -42,8 +42,7 @@ class Tech
 
     /**
      * @var string
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\Url()
      */
     protected $logo;

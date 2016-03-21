@@ -30,6 +30,7 @@ class SkillListViewProvider extends ListViewProvider
             ->addColumn('id', 'property')
             ->addColumn('name', 'property')
             ->addColumn('tech', 'property')
+            ->addColumn('value', 'property')
             ->addColumn('created', 'property')
             ->addColumn('updated', 'property')
             ->addFilter('skill_filter', 'provider.skills_filter');

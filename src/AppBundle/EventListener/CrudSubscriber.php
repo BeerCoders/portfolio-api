@@ -104,6 +104,7 @@ class CrudSubscriber implements EventSubscriberInterface
         $nonRestrictedRoutes = [
             'crud_controller.icons.list',
             'crud_controller.articles.list',
+            'crud_controller.techs.list',
             'crud_controller.projects.list'
         ];
 

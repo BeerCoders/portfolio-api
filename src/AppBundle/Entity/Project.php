@@ -44,10 +44,18 @@ class Project
     /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
-     * @Assert\NotBlank(groups={"Profile"})
+     * @Assert\NotBlank()
      * @Assert\Url()
      */
     protected $logo;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\NotBlank()
+     * @Assert\Url()
+     */
+    protected $flayer;
 
     /**
      * @var ArrayCollection|Tech[]
@@ -120,6 +128,24 @@ class Project
     public function setLogo($logo)
     {
         $this->logo = $logo;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFlayer()
+    {
+        return $this->flayer;
+    }
+
+    /**
+     * @param string $flayer
+     * @return Project
+     */
+    public function setFlayer($flayer)
+    {
+        $this->flayer = $flayer;
         return $this;
     }
 

@@ -25,6 +25,7 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('logo', 'url')
+            ->add('flayer', 'url')
             ->add('description', 'text')
             ->add('technologies', 'entity', [
                 'class' => 'AppBundle\Entity\Tech',

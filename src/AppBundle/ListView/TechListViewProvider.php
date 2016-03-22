@@ -29,6 +29,7 @@ class TechListViewProvider extends ListViewProvider
         $listView
             ->addColumn('id', 'property')
             ->addColumn('name', 'property')
+            ->addColumn('logo', 'property')
             ->addColumn('created', 'property')
             ->addColumn('updated', 'property')
             ->addFilter('tech_filter', 'provider.techs_filter');

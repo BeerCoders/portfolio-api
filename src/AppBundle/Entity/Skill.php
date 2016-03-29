@@ -43,8 +43,15 @@ class Skill
     protected $value;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", unique=true)
+     * @Assert\NotBlank()
+     */
+    protected $name;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tech")
-     * @ORM\JoinColumn(name="tech_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="tech_id", referencedColumnName="id", nullable=true)
      * @Assert\NotBlank()
      */
     protected $tech;
@@ -94,6 +101,24 @@ class Skill
     public function setValue($value)
     {
         $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return Skill
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
         return $this;
     }
 

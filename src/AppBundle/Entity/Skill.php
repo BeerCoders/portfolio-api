@@ -44,7 +44,7 @@ class Skill
 
     /**
      * @var string
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string", unique=true, nullable=true)
      * @Assert\NotBlank()
      */
     protected $name;
